@@ -19,6 +19,19 @@
       </div>
     </el-row>
     <hr>
+    <el-row :gutter="20">
+      <el-col :span="8" :offset="8">
+        <div class="search">
+          <el-input size="large" placeholder="请输入" suffix-icon="el-icon-search" v-model="input2"></el-input>
+          <p style="font-size:12px">热门搜索:</p>
+          <el-tag>Java</el-tag>
+          <el-tag type="success">Python</el-tag>
+          <el-tag type="info">React</el-tag>
+          <el-tag type="warning">Vue</el-tag>
+          <el-tag type="danger">.NET</el-tag>
+        </div>
+      </el-col>
+    </el-row>
   </header>
 </template>
 
@@ -52,6 +65,9 @@ export default {
   font-size: 12px;
   text-decoration: none;
   color: #303133;
+}
+.search {
+  margin: 60px;
 }
 h3 {
   margin: 40px 0 0;
