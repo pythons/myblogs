@@ -23,7 +23,7 @@
       <el-col :span="8" :offset="8">
         <div class="search">
           <el-input size="large" placeholder="请输入" suffix-icon="el-icon-search" v-model="input2"></el-input>
-          <p style="font-size:12px">热门搜索:</p>
+          <p style="font-size:12px">TAGS:</p>
           <el-tag>Java</el-tag>
           <el-tag type="success">Python</el-tag>
           <el-tag type="info">React</el-tag>
