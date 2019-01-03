@@ -20,7 +20,7 @@
     </el-row>
     <hr>
     <el-row :gutter="20">
-      <el-col :span="8" :offset="8">
+      <el-col :span="10" :offset="7">
         <div class="search">
           <el-input size="large" placeholder="请输入" suffix-icon="el-icon-search" v-model="input2"></el-input>
           <p style="font-size:12px">TAGS:</p>
@@ -32,6 +32,38 @@
         </div>
       </el-col>
     </el-row>
+
+    <nav>
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="8">
+          <div class="container">
+            <ul>
+              <li>
+                <router-link to>首页</router-link>
+              </li>
+              <li>
+                <router-link to>预览</router-link>
+              </li>
+              <li>
+                <router-link to>发布</router-link>
+              </li>
+              <li>
+                <router-link to>翻译</router-link>
+              </li>
+              <li>
+                <router-link to>轮播</router-link>
+              </li>
+              <li>
+                <router-link to>书签</router-link>
+              </li>
+              <li>
+                <router-link to>登录</router-link>
+              </li>
+            </ul>
+          </div>
+        </el-col>
+      </el-row>
+    </nav>
   </header>
 </template>
 
@@ -69,17 +101,25 @@ export default {
 .search {
   margin: 60px;
 }
-h3 {
-  margin: 40px 0 0;
+nav {
+  width: 100%;
+  height: 60px;
+  background: #409EFF;
 }
-ul {
+.container ul {
   list-style-type: none;
   padding: 0;
 }
-li {
+.container ul li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
+.container ul li a {
+  text-decoration: none;
+  color: #f8f8f9;
+  font-size: 14px;
+}
+h3 {
+  margin: 40px 0 0;
 }
 </style>
