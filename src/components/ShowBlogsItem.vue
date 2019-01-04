@@ -1,27 +1,29 @@
 <template>
   <div class="showBlogsItem">
-    <div v-for="o in 4" :key="o.item" class="singleItem">
+    <div class="content">
+      <div v-for="o in 4" :key="o.item" class="singleItem">
+        <el-row :gutter="20">
+          <el-col :span="12" :offset="6">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>标题</span>
+              </div>
+              <div>
+                <p>正文</p>
+              </div>
+              <el-button style="float: right; padding: 3px 0" type="text">READ</el-button>
+            </el-card>
+          </el-col>
+        </el-row>
+      </div>
       <el-row :gutter="20">
         <el-col :span="12" :offset="6">
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>标题</span>
-            </div>
-            <div>
-              <p>正文</p>
-            </div>
-            <el-button style="float: right; padding: 3px 0" type="text">READ</el-button>
-          </el-card>
+          <div class="btn">
+            <el-button type="success" round>更多</el-button>
+          </div>
         </el-col>
       </el-row>
     </div>
-    <el-row :gutter="20">
-      <el-col :span="12" :offset="6">
-        <div class="btn">
-          <el-button type="success" round>更多</el-button>
-        </div>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
@@ -35,7 +37,10 @@ export default {
 </script>
 <style scoped>
 .showBlogsItem {
-  margin: 60px;
+  background: #f8f8f9;
+}
+.content {
+  padding: 60px;
 }
 .singleItem {
   margin: 30px 0;

@@ -96,17 +96,17 @@ export default {
       searchInput: ""
     };
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 <style scoped>
-header{
+header {
   background: #f8f8f9;
 }
 .top {
   height: 24px;
   width: 100%;
+  padding-top: 8px;
 }
 .top-left {
   text-align: left;
