@@ -22,24 +22,38 @@
     <el-row :gutter="20">
       <el-col :span="10" :offset="7">
         <div class="search">
-          <el-input size="large" placeholder="请输入" suffix-icon="el-icon-search" v-model="input2"></el-input>
+          <el-input
+            size="large"
+            placeholder="请输入"
+            suffix-icon="el-icon-search"
+            v-model="searchInput"
+          ></el-input>
           <p style="font-size:12px">TAGS:</p>
-          <el-tag>Java</el-tag>
-          <el-tag type="success">Python</el-tag>
-          <el-tag type="info">React</el-tag>
-          <el-tag type="warning">Vue</el-tag>
-          <el-tag type="danger">.NET</el-tag>
+          <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">{{tag.name}}</el-tag>
         </div>
       </el-col>
     </el-row>
 
     <nav>
       <el-row :gutter="20">
-        <el-col :span="8" :offset="8">
+        <el-col :span="8" :offset="7">
           <div class="container">
             <ul>
               <li>
-                <router-link to>首页</router-link>
+                <!-- <router-link to>全部分类</router-link> -->
+                <el-dropdown>
+                  <span class="el-dropdown-link">
+                    全部
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>黄金糕</el-dropdown-item>
+                    <el-dropdown-item>狮子头</el-dropdown-item>
+                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                    <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                    <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </li>
               <li>
                 <router-link to>预览</router-link>
@@ -57,7 +71,7 @@
                 <router-link to>书签</router-link>
               </li>
               <li>
-                <router-link to>登录</router-link>
+                <router-link to>书签</router-link>
               </li>
             </ul>
           </div>
@@ -71,11 +85,25 @@
 export default {
   name: "headerItem",
   data() {
-    return {};
+    return {
+      tags: [
+        { name: "Java", type: "" },
+        { name: "Python", type: "success" },
+        { name: "React.js", type: "info" },
+        { name: "Vue.js", type: "warning" },
+        { name: ".NET", type: "danger" }
+      ],
+      searchInput: ""
+    };
+  },
+  methods: {
   }
 };
 </script>
 <style scoped>
+header{
+  background: #f8f8f9;
+}
 .top {
   height: 24px;
   width: 100%;
@@ -104,7 +132,7 @@ export default {
 nav {
   width: 100%;
   height: 60px;
-  background: #409EFF;
+  background: #67c23a;
 }
 .container ul {
   list-style-type: none;
@@ -114,10 +142,14 @@ nav {
   display: inline-block;
   margin: 0 10px;
 }
+.container ul li span {
+  color: #f8f8f9;
+  font-size: 16px;
+}
 .container ul li a {
   text-decoration: none;
   color: #f8f8f9;
-  font-size: 14px;
+  font-size: 16px;
 }
 h3 {
   margin: 40px 0 0;
