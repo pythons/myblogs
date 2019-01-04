@@ -7,6 +7,8 @@
           <!-- <font-awesome-icon icon="fab fa-github"/> -->
           <i class="fab fa-github"></i>
           <a>GitHub</a>
+          <br>
+          <i class="fab fa-weibo"></i>
           <a>Weibo</a>
         </div>
       </el-col>
