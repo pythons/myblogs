@@ -18,66 +18,81 @@
         </el-col>
       </div>
     </el-row>
-    <hr>
-    <el-row :gutter="20">
-      <el-col :span="10" :offset="7">
-        <div class="search">
-          <el-input
-            size="large"
-            placeholder="请输入"
-            suffix-icon="el-icon-search"
-            v-model="searchInput"
-          ></el-input>
-          <p style="font-size:12px">TAGS:</p>
-          <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">{{tag.name}}</el-tag>
-        </div>
-      </el-col>
-    </el-row>
-
-    <nav>
+    <div class="searchItem">
+      <hr>
       <el-row :gutter="20">
-        <el-col :span="8" :offset="7">
-          <div class="container">
-            <ul>
-              <li>
-                <!-- <router-link to>全部分类</router-link> -->
-                <el-dropdown>
-                  <span class="el-dropdown-link">
-                    全部
-                    <i class="el-icon-arrow-down el-icon--right"></i>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>黄金糕</el-dropdown-item>
-                    <el-dropdown-item>狮子头</el-dropdown-item>
-                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                    <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-                  </el-dropdown-menu>
-                </el-dropdown>
-              </li>
-              <li>
-                <router-link to>预览</router-link>
-              </li>
-              <li>
-                <router-link to>发布</router-link>
-              </li>
-              <li>
-                <router-link to>翻译</router-link>
-              </li>
-              <li>
-                <router-link to>轮播</router-link>
-              </li>
-              <li>
-                <router-link to>书签</router-link>
-              </li>
-              <li>
-                <router-link to>书签</router-link>
-              </li>
-            </ul>
+        <el-col :span="10" :offset="7">
+          <div class="search">
+            <el-input
+              size="large"
+              placeholder="请输入"
+              suffix-icon="el-icon-search"
+              v-model="searchInput"
+            ></el-input>
+            <p style="font-size:12px;color:#f8f8f9">TAGS:</p>
+            <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">{{tag.name}}</el-tag>
           </div>
         </el-col>
       </el-row>
-    </nav>
+
+      <hr>
+      <nav>
+        <el-row :gutter="20">
+          <el-col :span="8" :offset="7">
+            <div class="container">
+              <ul>
+                <li>
+                  <!-- <router-link to>全部分类</router-link> -->
+                  <el-dropdown>
+                    <span class="el-dropdown-link">
+                      全部
+                      <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>黄金糕</el-dropdown-item>
+                      <el-dropdown-item>狮子头</el-dropdown-item>
+                      <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                      <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                      <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </li>
+                <li>
+                  <router-link to>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to>
+                    <strong>预览</strong>
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+          </el-col>
+        </el-row>
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -126,13 +141,18 @@ header {
   text-decoration: none;
   color: #303133;
 }
+.searchItem {
+  background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+    fixed;
+  background-size: cover;
+}
 .search {
-  margin: 60px;
+  padding: 60px;
 }
 nav {
   width: 100%;
   height: 60px;
-  background: #67c23a;
+  /* background: #67c23a; */
 }
 .container ul {
   list-style-type: none;

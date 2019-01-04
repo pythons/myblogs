@@ -1,6 +1,11 @@
 <template>
   <div class="showBlogsItem">
     <div class="content">
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="8">
+          <div class="title">BLOGS</div>
+        </el-col>
+      </el-row>
       <div v-for="o in 4" :key="o.item" class="singleItem">
         <el-row :gutter="20">
           <el-col :span="12" :offset="6">
@@ -41,6 +46,14 @@ export default {
 }
 .content {
   padding: 60px;
+  color: #303133;
+}
+.content .title {
+  color: #303133;
+  text-align: center;
+  font-size: 18px;
+  text-decoration: #303133;
+  text-decoration-line: underline;
 }
 .singleItem {
   margin: 30px 0;
