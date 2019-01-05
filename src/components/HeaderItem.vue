@@ -12,7 +12,7 @@
         </el-col>
         <el-col :span="6" :offset="4">
           <div class="top-right">
-            <a href>登录</a>
+            <router-link to="/login">登录</router-link>
             <a href>注册</a>
           </div>
         </el-col>

@@ -1,0 +1,101 @@
+<template>
+  <div class="signUpItem">
+    <div class="item">
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="8">
+          <el-form label-width="100px" :model="user">
+            <el-form-item label="请输入用户名">
+              <el-input v-model="user.username" placeholder="请输入用户名" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="请输入密码">
+              <el-input v-model="user.password" placeholder="请输入密码" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码">
+              <el-input v-model="password" placeholder="请确认密码" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="密码保护问题">
+              <!-- <el-input v-model="user.question" placeholder="请输入密码" clearable></el-input> -->
+              <el-select v-model="user.question" placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="答案">
+              <el-input v-model="user.answer" placeholder="请输入答案" clearable></el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button type="success" @click="submit">提交</el-button>
+              <el-button type="primary" @click="back">返回</el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "signUpItem",
+  data() {
+    return {
+      user: {
+        username: "",
+        paswsword: "",
+        question: [],
+        answer: ""
+      },
+      password: "",
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕"
+        },
+        {
+          value: "选项2",
+          label: "双皮奶"
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎"
+        },
+        {
+          value: "选项4",
+          label: "龙须面"
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭"
+        }
+      ]
+    };
+  },
+  methods: {
+    submit: function() {},
+    back: function() {},
+    check: function() {}
+  }
+};
+</script>
+<style scoped>
+* {
+  overflow: hidden;
+}
+.signUpItem {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+    fixed;
+  background-size: cover;
+}
+.item {
+  /* text-align: center; */
+  margin: 50px 0px;
+  /* height: 250px; */
+}
+</style>

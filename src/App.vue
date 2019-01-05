@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    <!-- <router-view></router-view> -->
     <header-item/>
     <show-blogs-item/>
+    <!-- <router-view></router-view> -->
     <footer-item/>
     <!-- <login-item/> -->
+    <!-- <sign-up-item/> -->
   </div>
 </template>
 
@@ -13,6 +16,7 @@ import headerItem from "./components/HeaderItem.vue";
 import showBlogsItem from "./components/ShowBlogsItem.vue";
 import footerItem from "./components/FooterItem.vue";
 import loginItem from "./components/LoginItem.vue";
+import signUpItem from "./components/SignUpItem.vue";
 export default {
   name: "app",
   components: {
@@ -20,7 +24,8 @@ export default {
     headerItem,
     showBlogsItem,
     footerItem,
-    loginItem
+    loginItem,
+    signUpItem
   }
 };
 </script>

@@ -12,10 +12,12 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('./components/LoginItem.vue')
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('./components/SignUpItem.vue')
     },
   ],
   mode: "history",
