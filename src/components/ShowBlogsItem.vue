@@ -6,15 +6,17 @@
           <div class="title">BLOGS</div>
         </el-col>
       </el-row>
-      <div v-for="o in 4" :key="o.item" class="singleItem">
+      <div v-for="blog in blogs" :key="blog.title" class="singleItem">
         <el-row :gutter="20">
           <el-col :span="12" :offset="6">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span>标题</span>
+                <!-- <span>标题</span> -->
+                <span>{{blog.title}}</span>
               </div>
               <div>
-                <p>正文</p>
+                <!-- <p>正文</p> -->
+                <article>{{blog.body}}</article>
               </div>
               <el-button style="float: right; padding: 3px 0" type="text">READ</el-button>
             </el-card>
@@ -36,7 +38,17 @@
 export default {
   name: "showBlogsItem",
   data() {
-    return {};
+    return {
+      blogs: {
+        title: "",
+        body: ""
+      }
+    };
+  },
+  created() {
+    axios.get("https://jsonplaceholder.typicode.com/posts").then(data => {
+      this.blogs = data.data;
+    });
   }
 };
 </script>
