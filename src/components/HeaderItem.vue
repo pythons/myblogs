@@ -13,7 +13,7 @@
         <el-col :span="6" :offset="4">
           <div class="top-right">
             <router-link to="/login">登录</router-link>
-            <a href>注册</a>
+            <router-link to="/signup">注册</router-link>
           </div>
         </el-col>
       </div>
@@ -45,7 +45,7 @@
                   <!-- <router-link to>全部分类</router-link> -->
                   <el-dropdown>
                     <span class="el-dropdown-link">
-                      全部
+                      <strong>全部分类</strong>
                       <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
@@ -63,7 +63,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link>
+                  <router-link to>
                     <strong>预览</strong>
                   </router-link>
                 </li>
@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "headerItem",
   data() {

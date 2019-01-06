@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-    <!-- <router-view></router-view> -->
-    <header-item/>
-    <show-blogs-item/>
-    <!-- <router-view></router-view> -->
-    <footer-item/>
-    <!-- <login-item/> -->
-    <!-- <sign-up-item/> -->
+    <router-view></router-view>
   </div>
 </template>
 
