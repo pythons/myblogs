@@ -69,6 +69,10 @@ export default {
 .singleItem {
   margin: 30px 0;
 }
+.singleItem a{
+  color: #303133;
+  text-decoration: none;
+}
 p {
   font-size: 14px;
 }

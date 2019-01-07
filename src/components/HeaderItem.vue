@@ -77,16 +77,6 @@
                     <strong>预览</strong>
                   </router-link>
                 </li>
-                <li>
-                  <router-link to>
-                    <strong>预览</strong>
-                  </router-link>
-                </li>
-                <li>
-                  <router-link to>
-                    <strong>预览</strong>
-                  </router-link>
-                </li>
               </ul>
             </div>
           </el-col>
@@ -131,7 +121,7 @@ header {
   text-align: right;
 }
 .top-left a {
-  padding: 0px 10px;
+  padding: 0px 15px;
   font-size: 12px;
   text-decoration: none;
   color: #303133;
