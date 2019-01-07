@@ -12,7 +12,9 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <!-- <span>标题</span> -->
-                <router-link to="/singleBlog"><span>{{blog.title}}</span></router-link> 
+                <router-link :to="'/blog/'+blog.id">
+                  <span>{{blog.title}}</span>
+                </router-link>
               </div>
               <div>
                 <!-- <p>正文</p> -->
@@ -40,13 +42,18 @@ export default {
     return {
       blogs: {
         title: "",
-        body: ""
+        body: "",
+        id: 0
       }
     };
   },
   created() {
     axios.get("https://jsonplaceholder.typicode.com/posts").then(data => {
-      this.blogs = data.data;
+      var arr = [];
+      for (let key in data.data) {
+        arr[key] = data.data[key];
+      }
+      this.blogs = arr;
     });
   }
 };
@@ -69,7 +76,7 @@ export default {
 .singleItem {
   margin: 30px 0;
 }
-.singleItem a{
+.singleItem a {
   color: #303133;
   text-decoration: none;
 }

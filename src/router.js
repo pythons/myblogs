@@ -21,8 +21,8 @@ export default new Router({
       component: () => import('./components/SignUpItem.vue')
     },
     {
-      path: '/singleBlog',
-      name: 'singleBlog',
+      path: '/blog/:id',
+      name: 'singleBlogItem',
       component: () => import('./components/SingleBlogItem.vue')
     },
   ],
