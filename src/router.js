@@ -20,6 +20,11 @@ export default new Router({
       name: 'signup',
       component: () => import('./components/SignUpItem.vue')
     },
+    {
+      path: '/singleBlog',
+      name: 'singleBlog',
+      component: () => import('./components/SingleBlogItem.vue')
+    },
   ],
   mode: "history",
 })

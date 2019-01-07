@@ -12,13 +12,12 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <!-- <span>标题</span> -->
-                <span>{{blog.title}}</span>
+                <router-link to="/singleBlog"><span>{{blog.title}}</span></router-link> 
               </div>
               <div>
                 <!-- <p>正文</p> -->
                 <article>{{blog.body}}</article>
               </div>
-              <el-button style="float: right; padding: 3px 0" type="text">READ</el-button>
             </el-card>
           </el-col>
         </el-row>
