@@ -29,13 +29,34 @@ export default {
     return {
       user: {
         username: "",
-        paswsword: ""
+        password: ""
       }
     };
   },
   methods: {
-    singIn() {},
-    singUp() {},
+    signIn() {
+      axios
+        .post("http://127.0.0.1:8000/polls/login", {
+          username: this.user.username,
+          password: this.user.password
+        })
+        .then(data => {
+          if (data.status != 200) {
+            this.$notify.error({
+              title: "用户名或密码错误",
+              message: "请重新输入"
+            });
+          } else {
+            this.$notify.success({
+              title: "登录成功",
+              message: "跳转至之前界面"
+            });
+          }
+        });
+    },
+    signUp() {
+      this.$router.push("/signup");
+    },
     getPassword: function() {}
   }
 };
