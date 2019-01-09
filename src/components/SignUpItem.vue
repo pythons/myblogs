@@ -11,7 +11,7 @@
               <el-input v-model="user.password" placeholder="请输入密码" clearable></el-input>
             </el-form-item>
             <el-form-item label="确认密码">
-              <el-input v-model="password" placeholder="请确认密码" clearable></el-input>
+              <el-input v-model="repassword" placeholder="请确认密码" clearable></el-input>
             </el-form-item>
             <el-form-item label="密码保护问题">
               <!-- <el-input v-model="user.question" placeholder="请输入密码" clearable></el-input> -->
@@ -27,6 +27,9 @@
             <el-form-item label="答案">
               <el-input v-model="user.answer" placeholder="请输入答案" clearable></el-input>
             </el-form-item>
+            <el-form-item label="邮箱">
+              <el-input v-model="user.email" placeholder="请输入邮箱" clearable></el-input>
+            </el-form-item>
 
             <el-form-item>
               <el-button type="success" @click="submit">提交</el-button>
@@ -39,43 +42,60 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "signUpItem",
   data() {
     return {
       user: {
         username: "",
-        paswsword: "",
-        question: [],
-        answer: ""
+        password: "",
+        question: "",
+        answer: "",
+        email: ""
       },
-      password: "",
+      repassword: "",
       options: [
         {
-          value: "选项1",
+          value: "1",
           label: "黄金糕"
         },
         {
-          value: "选项2",
+          value: "2",
           label: "双皮奶"
         },
         {
-          value: "选项3",
+          value: "3",
           label: "蚵仔煎"
         },
         {
-          value: "选项4",
+          value: "4",
           label: "龙须面"
         },
         {
-          value: "选项5",
+          value: "5",
           label: "北京烤鸭"
         }
       ]
     };
   },
   methods: {
-    submit: function() {},
+    submit() {
+      axios
+        .post("http://127.0.0.1:8000/polls/submitUser", {
+          username: this.user.username,
+          password: this.user.password,
+          question: this.user.question,
+          answer: this.user.answer,
+          email: this.user.email
+        })
+        .then(data => {
+          console.log(data);
+          if (data.data.message == "success") {
+            this.$router.push("/");
+          }
+        });
+    },
     back: function() {},
     check: function() {}
   }

@@ -23,7 +23,10 @@ export default new Router({
     {
       path: '/blog/:id',
       name: 'singleBlogItem',
-      component: () => import('./components/SingleBlogItem.vue')
+      component: () => import('./components/SingleBlogItem.vue'),
+      meta: {
+        isLogin: true
+      }
     },
   ],
   mode: "history",

@@ -34,8 +34,8 @@ export default {
     };
   },
   methods: {
-    singIn: function() {},
-    singUp: function() {},
+    singIn() {},
+    singUp() {},
     getPassword: function() {}
   }
 };
