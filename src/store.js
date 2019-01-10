@@ -6,12 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // 设置属性
   state: {
+    username: "",
     isLogin: false,
   },
 
   // 获取属性的状态
   getters: {
+    //获取用户名
     //获取登录状态
+    username: state => state.username,
     isLogin: state => state.isLogin,
   },
 
