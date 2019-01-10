@@ -3,31 +3,18 @@
     <div class="item">
       <el-row :gutter="20">
         <el-col :span="8" :offset="8">
-          <!-- <el-form label-width="80px" :model="userForm" :rules="rules" ref="userForm">
-            <el-form-item label="用户名" prop="username">
-              <el-input v-model="userForm.username" placeholder="请输入用户名" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="密码" class="labelItem" prop="password">
-              <el-input type="password" v-model="userForm.password" placeholder="请输入密码" clearable></el-input>
-            </el-form-item>
-
-            <el-form-item>
-              <el-button type="success" @click="submitForm('userForm')">登录</el-button>
-            </el-form-item>
-          </el-form>-->
           <el-form
             :model="userForm"
-            status-icon
             :rules="rules"
             ref="userForm"
             label-width="100px"
-            class="demo-ruleForm"
+            class="userForm"
           >
             <el-form-item label="用户名" prop="username">
-              <el-input type="text" v-model="userForm.username" autocomplete="off"></el-input>
+              <el-input type="text" v-model="userForm.username"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="userForm.password" autocomplete="off"></el-input>
+              <el-input type="password" v-model="userForm.password"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm('userForm')">提交</el-button>
@@ -40,6 +27,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "loginItem",
   data() {
@@ -64,7 +52,6 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // alert("submit!");
           axios
             .post("http://127.0.0.1:8000/polls/login", {
               username: this.userForm.username,
@@ -72,19 +59,19 @@ export default {
             })
             .then(data => {
               if (data.data.message == 2) {
-                this.$notify.error({
-                  title: "用户名错误",
-                  message: "请重新输入"
+                this.$message({
+                  message: "该用户不存在",
+                  type: "warning"
                 });
               } else if (data.data.message == 0) {
-                this.$notify.error({
-                  title: "密码错误",
-                  message: "请重新输入"
+                this.$message({
+                  message: "密码错误",
+                  type: "error"
                 });
               } else if (data.data.message == 1) {
-                this.$notify.success({
-                  title: "登录成功",
-                  message: "跳转至之前页面"
+                this.$message({
+                  message: "登录成功",
+                  type: "success"
                 });
               }
             });
@@ -119,5 +106,8 @@ export default {
 }
 .labelItem {
   color: #f8f8f9;
+}
+.userForm {
+  background: #f8f8f9;
 }
 </style>
