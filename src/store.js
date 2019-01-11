@@ -24,15 +24,18 @@ export default new Vuex.Store({
     userStatus(state, flag) {
       state.isLogin = flag
     },
+    usernameStatus(state, flag) {
+      state.username = flag
+    }
   },
 
-  // 应用mutations
-  actions: {
-    //获取登录状态
-    setUser({
-      commit
-    }, flag) {
-      commit("userStatus", flag)
-    },
-  }
+  // // 应用mutations
+  // actions: {
+  //   //获取登录状态
+  //   setUser({
+  //     commit
+  //   }, flag) {
+  //     commit("userStatus", flag)
+  //   },
+  // }
 })

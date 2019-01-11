@@ -11,9 +11,12 @@
           </div>
         </el-col>
         <el-col :span="6" :offset="4">
-          <div class="top-right">
+          <div v-if="!checkLogin" class="top-right">
             <router-link to="/login">登录</router-link>
             <router-link to="/signup">注册</router-link>
+          </div>
+          <div v-else-if="checkLogin" class="top-right">
+            <el-button>{{username}}</el-button>
           </div>
         </el-col>
       </div>
@@ -92,6 +95,7 @@ export default {
   name: "headerItem",
   data() {
     return {
+      username: "",
       tags: [
         { name: "Java", type: "" },
         { name: "Python", type: "success" },
@@ -102,7 +106,13 @@ export default {
       searchInput: ""
     };
   },
-  methods: {}
+  methods: {},
+  computed: {
+    checkLogin() {
+      this.username = this.$store.getters.username;
+      return this.$store.getters.isLogin;
+    }
+  }
 };
 </script>
 <style scoped>
