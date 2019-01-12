@@ -21,18 +21,14 @@
               <router-link to="/signup">注册</router-link>
             </div>
             <div v-else-if="checkLogin" class="top-right">
-              <!-- <el-button>{{username}}</el-button> -->
-              <el-dropdown>
+              <el-dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
                   {{username}}
                   <i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>黄金糕</el-dropdown-item>
-                  <el-dropdown-item>狮子头</el-dropdown-item>
-                  <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                  <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                  <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                  <el-dropdown-item command="a">个人主页</el-dropdown-item>
+                  <el-dropdown-item divided command="b">注销</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </div>
@@ -139,7 +135,19 @@ export default {
       }
     };
   },
-  methods: {},
+  methods: {
+    handleCommand(command) {
+      if (command == "b") {
+        this.$store.commit("userStatus", false);
+        this.$store.commit("usernameStatus", "");
+        //刷新
+        //新建一个空页面
+        let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
+        this.$router.push(NewPage);
+        this.$router.go(-1);
+      }
+    }
+  },
   computed: {
     checkLogin() {
       this.username = this.$store.getters.username;
@@ -183,6 +191,14 @@ header {
   text-decoration: none;
   color: #f8f8f9;
 }
+
+.top-right span {
+  padding: 0px 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #f8f8f9;
+}
+
 .container {
   background: #f8f8f9;
   padding: 30px;

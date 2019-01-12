@@ -16,19 +16,17 @@
             <router-link to="/signup">注册</router-link>
           </div>
           <div v-else-if="checkLogin" class="top-right">
-              <!-- <el-button>{{username}}</el-button> -->
-              <el-dropdown>
-                  <span class="el-dropdown-link">
-                      {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item>黄金糕</el-dropdown-item>
-                      <el-dropdown-item>狮子头</el-dropdown-item>
-                      <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                      <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                      <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-                  </el-dropdown-menu>
-              </el-dropdown>
+            <!-- <el-button>{{username}}</el-button> -->
+            <el-dropdown @command="handleCommand">
+              <span class="el-dropdown-link">
+                {{username}}
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">个人主页</el-dropdown-item>
+                <el-dropdown-item divided command="b">注销</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
         </el-col>
       </div>
@@ -57,7 +55,6 @@
             <div class="container">
               <ul>
                 <li>
-                  <!-- <router-link to>全部分类</router-link> -->
                   <el-dropdown>
                     <span class="el-dropdown-link">
                       <strong>全部分类</strong>
@@ -67,8 +64,6 @@
                       <el-dropdown-item>黄金糕</el-dropdown-item>
                       <el-dropdown-item>狮子头</el-dropdown-item>
                       <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                      <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                      <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
                 </li>
@@ -118,7 +113,19 @@ export default {
       searchInput: ""
     };
   },
-  methods: {},
+  methods: {
+    handleCommand(command) {
+      if (command == "b") {
+      this.$store.commit("userStatus", false);
+      this.$store.commit("usernameStatus", "");
+      //刷新
+      //新建一个空页面
+      let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
+      this.$router.push(NewPage);
+      this.$router.go(-1);
+      }
+    }
+  },
   computed: {
     checkLogin() {
       this.username = this.$store.getters.username;
