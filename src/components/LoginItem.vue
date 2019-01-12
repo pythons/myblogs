@@ -111,6 +111,6 @@ export default {
   color: #f8f8f9;
 }
 .userForm {
-  background: #f8f8f9;
+  /* background: #f8f8f9; */
 }
 </style>
