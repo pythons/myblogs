@@ -12,9 +12,29 @@
             </div>
           </el-col>
           <el-col :span="6" :offset="4">
-            <div class="top-right">
+            <!-- <div class="top-right">
               <router-link to="/login">登录</router-link>
               <router-link to="/signup">注册</router-link>
+            </div>-->
+            <div v-if="!checkLogin" class="top-right">
+              <router-link to="/login">登录</router-link>
+              <router-link to="/signup">注册</router-link>
+            </div>
+            <div v-else-if="checkLogin" class="top-right">
+              <!-- <el-button>{{username}}</el-button> -->
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  {{username}}
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>黄金糕</el-dropdown-item>
+                  <el-dropdown-item>狮子头</el-dropdown-item>
+                  <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                  <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                  <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </div>
           </el-col>
         </el-row>
@@ -120,6 +140,12 @@ export default {
     };
   },
   methods: {},
+  computed: {
+    checkLogin() {
+      this.username = this.$store.getters.username;
+      return this.$store.getters.isLogin;
+    }
+  },
   created() {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
