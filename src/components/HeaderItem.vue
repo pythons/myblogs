@@ -16,7 +16,6 @@
             <router-link to="/signup">注册</router-link>
           </div>
           <div v-else-if="checkLogin" class="top-right">
-            <!-- <el-button>{{username}}</el-button> -->
             <el-dropdown @command="handleCommand">
               <span class="el-dropdown-link">
                 {{username}}
