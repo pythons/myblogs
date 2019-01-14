@@ -25,6 +25,11 @@ export default new Router({
       name: 'singleBlogItem',
       component: () => import('./components/SingleBlogItem.vue'),
     },
+    {
+      path: '/userpage',
+      name: 'userpage',
+      component: () => import('./components/UserPage.vue'),
+    },
   ],
   mode: "history",
 })

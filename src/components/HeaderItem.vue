@@ -114,6 +114,9 @@ export default {
   },
   methods: {
     handleCommand(command) {
+      if (command == "a") {
+      this.$router.push("/userpage");
+      }
       if (command == "b") {
       this.$store.commit("userStatus", false);
       this.$store.commit("usernameStatus", "");
