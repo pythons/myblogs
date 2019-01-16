@@ -67,7 +67,7 @@
 
           <hr>
           <article>{{blog.body}}</article>
-          <div class="comment"></div>
+          <!-- <div class="comment"></div> -->
         </el-col>
 
         <el-col :span="6" :offset="4">
@@ -86,8 +86,18 @@
         </el-col>
       </el-row>
     </div>
+
+    <!-- <hr> -->
+    <div class="comment">
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="4">
+          <p>评论</p>
+          <hr>
+        </el-col>
+      </el-row>
+    </div>
     <footer class="footerItem">
-      <hr>
+      <!-- <hr> -->
       <el-row>
         <el-col :span="6" :offset="4">
           <div class="leftItem">
@@ -237,10 +247,19 @@ header {
 article {
   padding: 10px;
 }
+.comment {
+  padding: 60px;
+  /* background: #67c23a; */
+  height: 36px;
+  color: #303133;
+  font-size: 18px;
+  line-height: 36px;
+}
 footer {
-  height: 200px;
-  width: 100vm;
+  /* height: 250px; */
+  /* width: 100vm; */
   background: #f8f8f9;
+  /* margin-bottom: 0; */
 }
 .leftItem {
   color: #303133;

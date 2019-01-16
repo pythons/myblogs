@@ -4,9 +4,8 @@
       <div class="top">
         <el-col :span="6" :offset="4">
           <div class="top-left">
-            <a href>社区</a>
-            <a href>详情</a>
-            <a href>公告</a>
+            <a href="https://segmentfault.com/">思否社区</a>
+            <a href="https://gitee.com/">码云</a>
             <a href>帮助</a>
           </div>
         </el-col>
@@ -60,30 +59,97 @@
                       <i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item>黄金糕</el-dropdown-item>
-                      <el-dropdown-item>狮子头</el-dropdown-item>
-                      <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">后端开发</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">前端开发</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">移动开发</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">硬件开发</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">测试</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">运维</label>
+                        </el-popover>
+                      </el-dropdown-item>
+                      <el-dropdown-item>
+                        <el-popover
+                          placement="right-start"
+                          width="200"
+                          trigger="hover"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                        >
+                          <label slot="reference">DBA</label>
+                        </el-popover>
+                      </el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
                 </li>
                 <li>
                   <router-link to>
-                    <strong>预览</strong>
+                    <strong>全职</strong>
                   </router-link>
                 </li>
                 <li>
                   <router-link to>
-                    <strong>预览</strong>
+                    <strong>实习</strong>
                   </router-link>
                 </li>
                 <li>
                   <router-link to>
-                    <strong>预览</strong>
+                    <strong>我的简历</strong>
                   </router-link>
                 </li>
                 <li>
                   <router-link to>
-                    <strong>预览</strong>
+                    <strong>发布职位</strong>
                   </router-link>
                 </li>
               </ul>
@@ -115,16 +181,16 @@ export default {
   methods: {
     handleCommand(command) {
       if (command == "a") {
-      this.$router.push("/userpage");
+        this.$router.push("/userpage");
       }
       if (command == "b") {
-      this.$store.commit("userStatus", false);
-      this.$store.commit("usernameStatus", "");
-      //刷新
-      //新建一个空页面
-      let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
-      this.$router.push(NewPage);
-      this.$router.go(-1);
+        this.$store.commit("userStatus", false);
+        this.$store.commit("usernameStatus", "");
+        //刷新
+        //新建一个空页面
+        let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
+        this.$router.push(NewPage);
+        this.$router.go(-1);
       }
     }
   },

@@ -3,7 +3,7 @@
     <div class="content">
       <el-row :gutter="20">
         <el-col :span="8" :offset="8">
-          <div class="title">BLOGS</div>
+          <div class="title">热门招聘</div>
         </el-col>
       </el-row>
       <div v-for="blog in blogs" :key="blog.title" class="singleItem">
