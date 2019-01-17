@@ -40,16 +40,16 @@
           <el-col :span="10" :offset="7">
             <ul>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>全职</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>实习</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>我的简历</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>发布职位</router-link>
               </li>
             </ul>
           </el-col>

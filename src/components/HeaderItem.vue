@@ -74,7 +74,7 @@
                           placement="right-start"
                           width="200"
                           trigger="hover"
-                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                          content=""
                         >
                           <label slot="reference">前端开发</label>
                         </el-popover>
@@ -84,7 +84,7 @@
                           placement="right-start"
                           width="200"
                           trigger="hover"
-                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                          content=""
                         >
                           <label slot="reference">移动开发</label>
                         </el-popover>
