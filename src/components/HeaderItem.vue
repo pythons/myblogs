@@ -70,22 +70,12 @@
                         </el-popover>
                       </el-dropdown-item>
                       <el-dropdown-item>
-                        <el-popover
-                          placement="right-start"
-                          width="200"
-                          trigger="hover"
-                          content=""
-                        >
+                        <el-popover placement="right-start" width="200" trigger="hover" content>
                           <label slot="reference">前端开发</label>
                         </el-popover>
                       </el-dropdown-item>
                       <el-dropdown-item>
-                        <el-popover
-                          placement="right-start"
-                          width="200"
-                          trigger="hover"
-                          content=""
-                        >
+                        <el-popover placement="right-start" width="200" trigger="hover" content>
                           <label slot="reference">移动开发</label>
                         </el-popover>
                       </el-dropdown-item>
@@ -196,8 +186,17 @@ export default {
   },
   computed: {
     checkLogin() {
-      this.username = this.$store.getters.username;
-      return this.$store.getters.isLogin;
+      // this.username = this.$store.getters.username;
+      if (
+        sessionStorage.getItem("username") &&
+        sessionStorage.getItem("userstatus") == true
+      ) {
+        this.username = this.$store.getters.username;
+        var a = this.$store.getters.isLogin;
+      }
+      // this.$store.commit("userStatus", true);
+      // this.$store.commit("usernameStatus", sessionStorage.getItem());
+      return a;
     }
   }
 };

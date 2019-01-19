@@ -73,8 +73,13 @@ export default {
                   message: "登录成功",
                   type: "success"
                 });
+                sessionStorage.setItem("username", data.data.username);
+                sessionStorage.setItem("userstatus", true);
+                // this.$store.commit("userStatus", true);
+                // this.$store.commit("usernameStatus", this.userForm.username);
+                this.$store.commit("usernameStatus", data.data.username);
                 this.$store.commit("userStatus", true);
-                this.$store.commit("usernameStatus", this.userForm.username);
+
                 this.$router.push("/");
               }
             });
