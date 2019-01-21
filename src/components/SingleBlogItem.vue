@@ -87,11 +87,20 @@
     <div class="comment">
       <el-row :gutter="20">
         <el-col :span="8" :offset="4">
+          <el-button type="success">发送简历</el-button>
+        </el-col>
+      </el-row>
+    </div>
+    <!-- <hr> -->
+    <div class="comment">
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="4">
           <p>评论</p>
           <hr>
         </el-col>
       </el-row>
     </div>
+
     <footer class="footerItem">
       <!-- <hr> -->
       <el-row>
