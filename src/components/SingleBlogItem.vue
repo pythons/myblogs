@@ -75,11 +75,7 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <!-- <span>标题</span> -->
-                <span>作者</span>
-              </div>
-              <div>
-                <!-- <p>正文</p> -->
-                <article>简介</article>
+                <span>公司简介</span>
               </div>
             </el-card>
           </div>
