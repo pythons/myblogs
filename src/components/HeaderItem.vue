@@ -186,14 +186,10 @@ export default {
   },
   computed: {
     checkLogin() {
-      // this.username = this.$store.getters.username;
-      if (
-        sessionStorage.getItem("username") &&
-        sessionStorage.getItem("userstatus") == true
-      ) {
-        this.username = this.$store.getters.username;
-        var a = this.$store.getters.isLogin;
-      }
+      this.username = this.$store.getters.username;
+
+      var a = this.$store.getters.isLogin;
+
       // this.$store.commit("userStatus", true);
       // this.$store.commit("usernameStatus", sessionStorage.getItem());
       return a;
