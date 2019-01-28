@@ -1,5 +1,6 @@
 <template>
   <div id="homepage">
+    <test/>
     <header-item/>
     <show-blogs-item/>
     <footer-item/>
@@ -7,12 +8,14 @@
 </template>
 
 <script>
+import test from "./1111";
 import headerItem from "./HeaderItem.vue";
 import showBlogsItem from "./ShowBlogsItem.vue";
 import footerItem from "./FooterItem.vue";
 export default {
   name: "homepage",
   components: {
+    test,
     headerItem,
     showBlogsItem,
     footerItem
