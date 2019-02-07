@@ -41,7 +41,7 @@
                 <router-link to>实习</router-link>
               </li>
               <li>
-                <router-link to>我的简历</router-link>
+                <router-link to="/reaume">我的简历</router-link>
               </li>
               <li>
                 <router-link to>发布职位</router-link>
@@ -53,6 +53,88 @@
     </header>
     <div class="content">
       <el-row :gutter="20">
+        <!-- 基本资料卡片 -->
+        <el-col :span="12" :offset="6">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>个人信息</span>
+              <el-button
+                style="float: right; padding: 3px 0;color:#67c23a"
+                type="text"
+                icon="el-icon-edit"
+              ></el-button>
+            </div>
+            <div>
+              <div style="font-size:15px">
+                <strong>{{baseInfo.name}}</strong>
+              </div>
+              <div
+                style="font-size:14px"
+              >基本信息：{{baseInfo.sex}} / {{baseInfo.age}} / {{baseInfo.startWork}}</div>
+              <div
+                style="font-size:14px"
+              >求职意向：{{baseInfo.sex}} / {{baseInfo.age}} / {{baseInfo.startWork}}</div>
+              <div style="font-size:14px">手机：{{baseInfo.telphone}}</div>
+              <div style="font-size:14px">邮箱：{{baseInfo.email}}</div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12" :offset="6">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>项目经历</span>
+              <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
+            </div>
+            <div>
+              <div class="name">{{baseInfo.name}}</div>
+              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12" :offset="6">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>工作经历</span>
+              <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
+            </div>
+            <div>
+              <div class="name">{{baseInfo.name}}</div>
+              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12" :offset="6">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>教育经历</span>
+              <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
+            </div>
+            <div>
+              <div class="name">{{baseInfo.name}}</div>
+              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="12" :offset="6">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>自我描述</span>
+              <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
+            </div>
+            <div>
+              <div class="name">{{baseInfo.name}}</div>
+              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+            </div>
+          </el-card>
+        </el-col>
       </el-row>
     </div>
     <footer class="footerItem">
@@ -97,6 +179,7 @@ export default {
   name: "singleBlogItem",
   data() {
     return {
+      baseInfo: {},
       id: this.$route.params.id,
       blog: {
         title: "",
@@ -133,6 +216,12 @@ export default {
 <style scoped>
 header {
   background: #f8f8f9;
+}
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 .top {
   background: #67c23a;
