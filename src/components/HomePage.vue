@@ -1,20 +1,20 @@
 <template>
   <div id="homepage">
     <header-item/>
-    <show-blogs-item/>
+    <jobList/>
     <footer-item/>
   </div>
 </template>
 
 <script>
 import headerItem from "./HeaderItem.vue";
-import showBlogsItem from "./ShowBlogsItem.vue";
+import jobList from "./JobList.vue";
 import footerItem from "./FooterItem.vue";
 export default {
   name: "homepage",
   components: {
     headerItem,
-    showBlogsItem,
+    jobList,
     footerItem
   }
 };

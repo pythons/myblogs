@@ -71,7 +71,6 @@ export default {
   text-align: center;
   font-size: 18px;
   text-decoration: #303133;
-  text-decoration-line: underline;
 }
 .singleItem {
   margin: 30px 0;

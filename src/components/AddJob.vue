@@ -5,17 +5,12 @@
         <el-row :gutter="20">
           <el-col :span="6" :offset="4">
             <div class="top-left">
-              <a href>社区</a>
-              <a href>详情</a>
-              <a href>公告</a>
+              <a href>思否社区</a>
+              <a href>码云</a>
               <a href>帮助</a>
             </div>
           </el-col>
           <el-col :span="6" :offset="4">
-            <!-- <div class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>-->
             <div v-if="!checkLogin" class="top-right">
               <router-link to="/login">登录</router-link>
               <router-link to="/signup">注册</router-link>
@@ -40,16 +35,16 @@
           <el-col :span="10" :offset="7">
             <ul>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>全职</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>实习</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>我的简历</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>发布职位</router-link>
               </li>
             </ul>
           </el-col>
@@ -61,9 +56,7 @@
         <el-col :span="8" :offset="4">
           <div class="content-left">
             <el-form>
-              <el-form-item>
-                <el-input></el-input>
-                <el-input></el-input>
+              <el-form-item label="职位名称">
                 <el-input></el-input>
               </el-form-item>
             </el-form>

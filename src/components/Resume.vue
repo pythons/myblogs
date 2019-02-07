@@ -11,10 +11,6 @@
             </div>
           </el-col>
           <el-col :span="6" :offset="4">
-            <!-- <div class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>-->
             <div v-if="!checkLogin" class="top-right">
               <router-link to="/login">登录</router-link>
               <router-link to="/signup">注册</router-link>
@@ -39,16 +35,16 @@
           <el-col :span="10" :offset="7">
             <ul>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>全职</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>实习</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>我的简历</router-link>
               </li>
               <li>
-                <router-link to>预览</router-link>
+                <router-link to>发布职位</router-link>
               </li>
             </ul>
           </el-col>
@@ -57,32 +53,6 @@
     </header>
     <div class="content">
       <el-row :gutter="20">
-        <el-col :span="8" :offset="4">
-          <div class="content-left">
-            <span>{{blog.title}}</span>
-            <p>更新时间:</p>
-            <p>标签:</p>
-          </div>
-
-          <hr>
-          <article>{{blog.body}}</article>
-          <div class="comment"></div>
-        </el-col>
-
-        <el-col :span="6" :offset="4">
-          <div class="content-right">
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <!-- <span>标题</span> -->
-                <span>作者</span>
-              </div>
-              <div>
-                <!-- <p>正文</p> -->
-                <article>简介</article>
-              </div>
-            </el-card>
-          </div>
-        </el-col>
       </el-row>
     </div>
     <footer class="footerItem">

@@ -58,23 +58,23 @@ export default {
       options: [
         {
           value: "1",
-          label: "黄金糕"
+          label: "你的第一所小学的名称"
         },
         {
           value: "2",
-          label: "双皮奶"
+          label: "你的第一所中学的名称"
         },
         {
           value: "3",
-          label: "蚵仔煎"
+          label: "你的第一所大学的名称"
         },
         {
           value: "4",
-          label: "龙须面"
+          label: "你父亲的名字"
         },
         {
           value: "5",
-          label: "北京烤鸭"
+          label: "你母亲的名字"
         }
       ]
     };

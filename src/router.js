@@ -30,6 +30,21 @@ export default new Router({
       name: 'userpage',
       component: () => import('./components/UserPage.vue'),
     },
+    {
+      path: '/check',
+      name: 'check',
+      component: () => import('./components/checkEnterprise.vue'),
+    },
+    {
+      path: '/addjob',
+      name: 'addjob',
+      component: () => import('./components/AddJob.vue'),
+    },
+    {
+      path: '/resume',
+      name: 'resume',
+      component: () => import('./components/Resume.vue'),
+    },
   ],
   mode: "history",
 })

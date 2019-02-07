@@ -64,7 +64,7 @@
                           placement="right-start"
                           width="200"
                           trigger="hover"
-                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。" 
                         >
                           <label slot="reference">后端开发</label>
                         </el-popover>
@@ -133,12 +133,12 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link to>
+                  <router-link to="/resume">
                     <strong>我的简历</strong>
                   </router-link>
                 </li>
                 <li>
-                  <router-link to>
+                  <router-link to="/addjob">
                     <strong>发布职位</strong>
                   </router-link>
                 </li>

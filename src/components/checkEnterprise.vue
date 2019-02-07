@@ -5,9 +5,8 @@
         <el-row :gutter="20">
           <el-col :span="6" :offset="4">
             <div class="top-left">
-              <a href>社区</a>
-              <a href>详情</a>
-              <a href>公告</a>
+              <a href>思否社区</a>
+              <a href>码云</a>
               <a href>帮助</a>
             </div>
           </el-col>
