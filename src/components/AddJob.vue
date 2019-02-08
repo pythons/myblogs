@@ -5,6 +5,7 @@
         <el-row :gutter="20">
           <el-col :span="6" :offset="4">
             <div class="top-left">
+              <a href="/">首页</a>
               <a href>思否社区</a>
               <a href>码云</a>
               <a href>帮助</a>
@@ -55,9 +56,24 @@
       <el-row :gutter="20">
         <el-col :span="8" :offset="4">
           <div class="content-left">
-            <el-form>
+            <el-form ref="form" :model="addjob" label-width="80px">
               <el-form-item label="职位名称">
                 <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="所属公司">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="职位类别">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item label="投递邮箱">
+                <el-input></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="success">立即创建</el-button>
+                <el-button>
+                  <router-link to="/">取消</router-link>
+                </el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -106,6 +122,7 @@ export default {
   name: "singleBlogItem",
   data() {
     return {
+      addjob: {},
       id: this.$route.params.id,
       blog: {
         title: "",
@@ -191,6 +208,10 @@ header {
   text-decoration: none;
   color: #303133;
   font-size: 18px;
+}
+a {
+  text-decoration: none;
+  color: #303133;
 }
 .content {
   padding: 60px;

@@ -5,6 +5,7 @@
         <el-row :gutter="20">
           <el-col :span="6" :offset="4">
             <div class="top-left">
+              <a href="/">首页</a>
               <a href>思否社区</a>
               <a href>码云</a>
               <a href>帮助</a>
@@ -88,8 +89,11 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div class="name">{{baseInfo.name}}</div>
-              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+              <div style="font-size:14px">项目职位：{{baseInfo.name}}</div>
+              <div style="font-size:14px">{{baseInfo.org}}</div>
+              <div style="font-size:14px">{{baseInfo.start}}/{{baseInfo.end}}</div>
+              <div style="font-size:14px">相关技术：{{baseInfo.tec}}</div>
+              <div style="font-size:14px">项目描述：{{baseInfo.disp}}</div>
             </div>
           </el-card>
         </el-col>
@@ -102,8 +106,10 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div class="name">{{baseInfo.name}}</div>
-              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+              <div style="font-size:14px">职位：{{baseInfo.jobname}}</div>
+              <div style="font-size:14px">{{baseInfo.company}}</div>
+              <div style="font-size:14px">{{baseInfo.start}}/{{baseInfo.end}}</div>
+              <div style="font-size:14px">工作描述：{{baseInfo.job}}</div>
             </div>
           </el-card>
         </el-col>
@@ -116,8 +122,10 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div class="name">{{baseInfo.name}}</div>
-              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+              <div style="font-size:14px">专业：{{baseInfo.jobname}}</div>
+              <div style="font-size:14px">学校：{{baseInfo.company}}</div>
+              <div style="font-size:14px">毕业时间：{{baseInfo.grad}}</div>
+              <div style="font-size:14px">学历：{{baseInfo.job}}</div>
             </div>
           </el-card>
         </el-col>
@@ -130,8 +138,7 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div class="name">{{baseInfo.name}}</div>
-              <div>{{baseInfo.sex}}|现居住:{{baseInfo.location}}|{{baseInfo.startWork}}开始工作</div>
+              <article style="font-size:14px">{{baseInfo.jobname}}</article>
             </div>
           </el-card>
         </el-col>

@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm('userForm')">提交</el-button>
-              <el-button @click="resetForm('ruleForm2')">重置</el-button>
+              <el-button @click="resetForm">重置</el-button>
             </el-form-item>
           </el-form>
         </el-col>
@@ -28,6 +28,7 @@
 </template>
 <script>
 import axios from "axios";
+import { setCookie, getCookie } from "../cookie.js";
 export default {
   name: "loginItem",
   data() {
@@ -47,6 +48,11 @@ export default {
         ]
       }
     };
+  },
+  mounted() {
+    if (getCookie("username")) {
+      this.$router.push("/");
+    }
   },
   methods: {
     submitForm(formName) {
@@ -73,12 +79,20 @@ export default {
                   message: "登录成功",
                   type: "success"
                 });
-                sessionStorage.setItem("username", data.data.username);
-                sessionStorage.setItem("userstatus", true);
+                setCookie("username", this.userForm.username, 1000 * 60);
+                setTimeout(
+                  function() {
+                    this.$router.push("/");
+                  }.bind(this),
+                  1000
+                );
+                console.log(getCookie("username"));
+                // sessionStorage.setItem("username", data.data.username);
+                // sessionStorage.setItem("userstatus", true);
+                // // this.$store.commit("userStatus", true);
+                // // this.$store.commit("usernameStatus", this.userForm.username);
+                // this.$store.commit("usernameStatus", data.data.username);
                 // this.$store.commit("userStatus", true);
-                // this.$store.commit("usernameStatus", this.userForm.username);
-                this.$store.commit("usernameStatus", data.data.username);
-                this.$store.commit("userStatus", true);
 
                 this.$router.push("/");
               }
@@ -87,6 +101,10 @@ export default {
           return false;
         }
       });
+    },
+    resetForm() {
+      this.userForm.password = "";
+      this.userForm.username = "";
     },
     signUp() {
       this.$router.push("/signup");

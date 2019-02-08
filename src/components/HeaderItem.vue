@@ -64,7 +64,7 @@
                           placement="right-start"
                           width="200"
                           trigger="hover"
-                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。" 
+                          content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
                         >
                           <label slot="reference">后端开发</label>
                         </el-popover>
@@ -153,6 +153,7 @@
 
 <script>
 import axios from "axios";
+import { setCookie, getCookie, delCookie } from "../cookie.js";
 export default {
   name: "headerItem",
   data() {
@@ -174,8 +175,9 @@ export default {
         this.$router.push("/userpage");
       }
       if (command == "b") {
-        this.$store.commit("userStatus", false);
-        this.$store.commit("usernameStatus", "");
+        // this.$store.commit("userStatus", false);
+        // this.$store.commit("usernameStatus", "");
+         delCookie('username')
         //刷新
         //新建一个空页面
         let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
@@ -186,9 +188,16 @@ export default {
   },
   computed: {
     checkLogin() {
-      this.username = this.$store.getters.username;
+      let uname = getCookie("username");
+      let a = false;
+      // this.username = uname;
+      // this.username = this.$store.getters.username;
 
-      var a = this.$store.getters.isLogin;
+      // var a = this.$store.getters.isLogin;
+      if (uname) {
+        this.username = uname;
+        a = true;
+      }
 
       // this.$store.commit("userStatus", true);
       // this.$store.commit("usernameStatus", sessionStorage.getItem());
