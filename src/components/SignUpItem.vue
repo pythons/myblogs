@@ -8,10 +8,10 @@
               <el-input v-model="user.username" placeholder="请输入用户名" clearable></el-input>
             </el-form-item>
             <el-form-item label="请输入密码">
-              <el-input v-model="user.password" placeholder="请输入密码" clearable></el-input>
+              <el-input type="password" v-model="user.password" placeholder="请输入密码" clearable></el-input>
             </el-form-item>
             <el-form-item label="确认密码">
-              <el-input v-model="repassword" placeholder="请确认密码" clearable></el-input>
+              <el-input type="password" v-model="repassword" placeholder="请确认密码" clearable></el-input>
             </el-form-item>
             <el-form-item label="密码保护问题">
               <!-- <el-input v-model="user.question" placeholder="请输入密码" clearable></el-input> -->
