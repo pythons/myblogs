@@ -1,6 +1,7 @@
 <template>
   <div id="homepage">
     <header-item/>
+    <openWeek/>
     <jobList/>
     <footer-item/>
   </div>
@@ -10,12 +11,14 @@
 import headerItem from "./HeaderItem.vue";
 import jobList from "./JobList.vue";
 import footerItem from "./FooterItem.vue";
+import openWeek from "./OpenWeek";
 export default {
   name: "homepage",
   components: {
     headerItem,
     jobList,
-    footerItem
+    footerItem,
+    openWeek
   }
 };
 </script>
