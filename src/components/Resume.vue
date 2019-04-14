@@ -42,7 +42,7 @@
                 <router-link to>实习</router-link>
               </li>
               <li>
-                <router-link to="/reaume">我的简历</router-link>
+                <router-link to="/resume">我的简历</router-link>
               </li>
               <li>
                 <router-link to>发布职位</router-link>

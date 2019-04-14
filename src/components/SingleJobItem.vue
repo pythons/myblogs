@@ -59,13 +59,13 @@
       <el-row :gutter="20">
         <el-col :span="8" :offset="4">
           <div class="content-left">
-            <span>{{blog.title}}</span>
+            <span>{{job.title}}</span>
             <p>更新时间:</p>
             <p>标签:</p>
           </div>
 
           <hr>
-          <article>{{blog.body}}</article>
+          <article>{{job.body}}</article>
           <!-- <div class="comment"></div> -->
         </el-col>
 
@@ -130,12 +130,13 @@
 
 <script>
 import axios from "axios";
+import { setCookie, getCookie, delCookie } from "../cookie.js";
 export default {
   name: "singleBlogItem",
   data() {
     return {
       id: this.$route.params.id,
-      blog: {
+      job: {
         title: "",
         body: ""
       }
@@ -156,15 +157,20 @@ export default {
   },
   computed: {
     checkLogin() {
-      this.username = this.$store.getters.username;
-      return this.$store.getters.isLogin;
+      let uname = getCookie("username");
+      let a = false;
+      if (uname) {
+        this.username = uname;
+        a = true;
+      }
+      return a;
     }
   },
   created() {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
       .then(data => {
-        this.blog = data.data;
+        this.job = data.data;
       });
   }
 };

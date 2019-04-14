@@ -11,10 +11,6 @@
             </div>
           </el-col>
           <el-col :span="6" :offset="4">
-            <!-- <div class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>-->
             <div v-if="!checkLogin" class="top-right">
               <router-link to="/login">登录</router-link>
               <router-link to="/signup">注册</router-link>

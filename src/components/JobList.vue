@@ -12,7 +12,7 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <!-- <span>标题</span> -->
-                <router-link :to="'/blog/'+blog.id">
+                <router-link :to="'/job/'+blog.id">
                   <span>{{blog.title}}</span>
                 </router-link>
               </div>

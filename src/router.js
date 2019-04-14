@@ -21,9 +21,9 @@ export default new Router({
       component: () => import('./components/SignUpItem.vue')
     },
     {
-      path: '/blog/:id',
-      name: 'singleBlogItem',
-      component: () => import('./components/SingleBlogItem.vue'),
+      path: '/job/:id',
+      name: 'singleJobItem',
+      component: () => import('./components/SingleJobItem.vue'),
     },
     {
       path: '/userpage',

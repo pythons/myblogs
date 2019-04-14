@@ -1,7 +1,7 @@
 <template>
   <div id="homepage">
     <header-item/>
-    <openWeek/>
+    <!-- <openWeek/> -->
     <jobList/>
     <footer-item/>
   </div>
