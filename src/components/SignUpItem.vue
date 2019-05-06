@@ -1,48 +1,49 @@
 <template>
   <div class="signUpItem">
     <div class="item">
-      <el-row :gutter="20">
-        <el-col :span="8" :offset="8">
-          <el-form label-width="100px" :model="user">
-            <el-form-item label="请输入用户名">
-              <el-input v-model="user.username" placeholder="请输入用户名" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="请输入密码">
-              <el-input type="password" v-model="user.password" placeholder="请输入密码" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码">
-              <el-input type="password" v-model="repassword" placeholder="请确认密码" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="密码保护问题">
-              <!-- <el-input v-model="user.question" placeholder="请输入密码" clearable></el-input> -->
-              <el-select v-model="user.question" placeholder="请选择">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="答案">
-              <el-input v-model="user.answer" placeholder="请输入答案" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱">
-              <el-input v-model="user.email" placeholder="请输入邮箱" clearable></el-input>
-            </el-form-item>
+      <!-- <el-row :gutter="20">
+      <el-col :span="8" :offset="8">-->
+      <el-form label-width="120px" :model="user">
+        <el-form-item label="请输入用户名">
+          <el-input v-model="user.username" placeholder="请输入用户名" clearable></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱">
+          <el-input v-model="user.email" placeholder="请输入邮箱" clearable></el-input>
+        </el-form-item>
+        <el-form-item label="请输入密码">
+          <el-input type="password" v-model="user.password" placeholder="请输入密码" clearable></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码">
+          <el-input type="password" v-model="repassword" placeholder="请确认密码" clearable></el-input>
+        </el-form-item>
+        <el-form-item label="密码保护问题">
+          <!-- <el-input v-model="user.question" placeholder="请输入密码" clearable></el-input> -->
+          <el-select v-model="user.question" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="答案">
+          <el-input v-model="user.answer" placeholder="请输入答案" clearable></el-input>
+        </el-form-item>
 
-            <el-form-item>
-              <el-button type="success" @click="submit">提交</el-button>
-              <el-button type="primary" @click="back">返回</el-button>
-            </el-form-item>
-          </el-form>
-        </el-col>
-      </el-row>
+        <el-form-item>
+          <el-button type="success" @click="submit">提交</el-button>
+          <el-button type="primary" @click="back">返回</el-button>
+        </el-form-item>
+      </el-form>
+      <!-- </el-col>
+      </el-row>-->
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
+import Cookies from "vue-cookies";
 export default {
   name: "signUpItem",
   data() {
@@ -90,8 +91,8 @@ export default {
           email: this.user.email
         })
         .then(data => {
-          console.log(data);
-          if (data.data.message == "success") {
+          if (data.data.status == "ok") {
+            Cookies.set("username", this.user.username);
             this.$router.push("/");
           }
         });
@@ -114,8 +115,11 @@ export default {
   background-size: cover;
 }
 .item {
+  border-radius: 4px;
+  background-color: rgba(248, 248, 249, 0.5);
   /* text-align: center; */
-  margin: 50px 0px;
+  margin: 50px 500px;
+  padding: 50px 180px;
   /* height: 250px; */
 }
 </style>

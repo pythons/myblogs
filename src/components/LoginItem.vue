@@ -28,7 +28,7 @@
 </template>
 <script>
 import axios from "axios";
-import { setCookie, getCookie } from "../cookie.js";
+import Cookies from "vue-cookies";
 export default {
   name: "loginItem",
   data() {
@@ -50,7 +50,7 @@ export default {
     };
   },
   mounted() {
-    if (getCookie("username")) {
+    if (Cookies.get("username")) {
       this.$router.push("/");
     }
   },
@@ -64,36 +64,22 @@ export default {
               password: this.userForm.password
             })
             .then(data => {
-              if (data.data.message == 2) {
+              if (data.data.status == 2) {
                 this.$message({
                   message: "该用户不存在",
                   type: "warning"
                 });
-              } else if (data.data.message == 0) {
+              } else if (data.data.status == 0) {
                 this.$message({
                   message: "密码错误",
                   type: "error"
                 });
-              } else if (data.data.message == 1) {
+              } else if (data.data.status == 1) {
                 this.$message({
                   message: "登录成功",
                   type: "success"
                 });
-                setCookie("username", this.userForm.username, 1000 * 60);
-                setTimeout(
-                  function() {
-                    this.$router.push("/");
-                  }.bind(this),
-                  1000
-                );
-                console.log(getCookie("username"));
-                // sessionStorage.setItem("username", data.data.username);
-                // sessionStorage.setItem("userstatus", true);
-                // // this.$store.commit("userStatus", true);
-                // // this.$store.commit("usernameStatus", this.userForm.username);
-                // this.$store.commit("usernameStatus", data.data.username);
-                // this.$store.commit("userStatus", true);
-
+                Cookies.set("username", this.userForm.username);
                 this.$router.push("/");
               }
             });
