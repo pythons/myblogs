@@ -10,11 +10,11 @@
           </div>
         </el-col>
         <el-col :span="6" :offset="4">
-          <div v-if="!checkLogin" class="top-right">
+          <div v-if="!username" class="top-right">
             <router-link to="/login">登录</router-link>
             <router-link to="/signup">注册</router-link>
           </div>
-          <div v-else-if="checkLogin" class="top-right">
+          <div v-else class="top-right">
             <el-dropdown @command="handleCommand">
               <span class="el-dropdown-link">
                 {{username}}
@@ -152,8 +152,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { setCookie, getCookie, delCookie } from "../cookie.js";
+import Cookies from "vue-cookies";
 export default {
   name: "headerItem",
   data() {
@@ -169,6 +168,11 @@ export default {
       searchInput: ""
     };
   },
+  created() {
+    if (Cookies.get("username")) {
+      this.username = Cookies.get("username");
+    }
+  },
   methods: {
     handleCommand(command) {
       if (command == "a") {
@@ -177,31 +181,13 @@ export default {
       if (command == "b") {
         // this.$store.commit("userStatus", false);
         // this.$store.commit("usernameStatus", "");
-         delCookie('username')
+        Cookies.remove("username");
         //刷新
         //新建一个空页面
         let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
         this.$router.push(NewPage);
         this.$router.go(-1);
       }
-    }
-  },
-  computed: {
-    checkLogin() {
-      let uname = getCookie("username");
-      let a = false;
-      // this.username = uname;
-      // this.username = this.$store.getters.username;
-
-      // var a = this.$store.getters.isLogin;
-      if (uname) {
-        this.username = uname;
-        a = true;
-      }
-
-      // this.$store.commit("userStatus", true);
-      // this.$store.commit("usernameStatus", sessionStorage.getItem());
-      return a;
     }
   }
 };
