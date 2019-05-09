@@ -59,7 +59,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios
-            .post("http://127.0.0.1:8000/polls/login", {
+            .post("http://127.0.0.1:8000/apis/login", {
               username: this.userForm.username,
               password: this.userForm.password
             })
