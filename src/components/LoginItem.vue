@@ -167,13 +167,15 @@ export default {
   position: relative;
   height: 100vh;
   min-height: 600px;
-  background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+  /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+    fixed; */
+  background: url("../assets/bg.jpg") center no-repeat
     fixed;
   background-size: cover;
 }
 .item {
   border-radius: 4px;
-  background-color: rgba(248, 248, 249, 0.5);
+  background-color: rgba(248, 248, 249, 0.8);
   /* text-align: center; */
   margin: 50px 0px;
   padding: 50px;

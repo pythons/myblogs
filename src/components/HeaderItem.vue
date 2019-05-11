@@ -220,7 +220,10 @@ header {
   color: #303133;
 }
 .searchItem {
-  background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+  /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
+    fixed; */
+    
+  background: url("../assets/bg.jpg") center no-repeat
     fixed;
   background-size: cover;
 }
