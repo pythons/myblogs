@@ -48,7 +48,7 @@ export default {
     };
   },
   created() {
-    axios.get("https://jsonplaceholder.typicode.com/posts").then(data => {
+    this.axios.get("https://jsonplaceholder.typicode.com/posts").then(data => {
       var arr = [];
       for (let key in data.data) {
         arr[key] = data.data[key];

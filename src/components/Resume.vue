@@ -1,57 +1,5 @@
 <template>
   <div class="singleBlogItem">
-    <header>
-      <div class="top">
-        <el-row :gutter="20">
-          <el-col :span="6" :offset="4">
-            <div class="top-left">
-              <a href="/">首页</a>
-              <a href>思否社区</a>
-              <a href>码云</a>
-              <a href>帮助</a>
-            </div>
-          </el-col>
-          <el-col :span="6" :offset="4">
-            <div v-if="!checkLogin" class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>
-            <div v-else-if="checkLogin" class="top-right">
-              <el-dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  {{username}}
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="a">个人主页</el-dropdown-item>
-                  <el-dropdown-item divided command="b">注销</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="container">
-        <el-row :gutter="20">
-          <el-col :span="10" :offset="7">
-            <ul>
-              <li>
-                <router-link to>全职</router-link>
-              </li>
-              <li>
-                <router-link to>实习</router-link>
-              </li>
-              <li>
-                <router-link to="/resume">我的简历</router-link>
-              </li>
-              <li>
-                <router-link to>发布职位</router-link>
-              </li>
-            </ul>
-          </el-col>
-        </el-row>
-      </div>
-    </header>
     <div class="content">
       <el-row :gutter="20">
         <!-- 基本资料卡片 -->
@@ -67,16 +15,29 @@
             </div>
             <div>
               <div style="font-size:15px">
-                <strong>{{baseInfo.name}}</strong>
+                <strong>{{psnBaseInfo.name}}</strong>
+                <el-dropdown trigger="click" @command="handleCommand">
+                  <span class="el-dropdown-link">
+                    {{showNowStatus}}
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item
+                      v-for="item in nowStatusList"
+                      :key="item.key"
+                      :command="item"
+                    >{{item.value}}</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </div>
               <div
                 style="font-size:14px"
-              >基本信息：{{baseInfo.sex}} / {{baseInfo.age}} / {{baseInfo.startWork}}</div>
+              >基本信息：{{psnBaseInfo.age}} / {{psnBaseInfo.sex}} / {{psnBaseInfo.location}}</div>
               <div
                 style="font-size:14px"
-              >求职意向：{{baseInfo.sex}} / {{baseInfo.age}} / {{baseInfo.startWork}}</div>
-              <div style="font-size:14px">手机：{{baseInfo.telphone}}</div>
-              <div style="font-size:14px">邮箱：{{baseInfo.email}}</div>
+              >求职意向：{{psnBaseInfo.jobName}} / {{psnBaseInfo.pay}} / {{psnBaseInfo.jobType}} / {{psnBaseInfo.jobAddress}}</div>
+              <div style="font-size:14px">手机：{{psnBaseInfo.tel}}</div>
+              <div style="font-size:14px">邮箱：{{psnBaseInfo.email}}</div>
             </div>
           </el-card>
         </el-col>
@@ -89,11 +50,11 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div style="font-size:14px">项目职位：{{baseInfo.name}}</div>
-              <div style="font-size:14px">{{baseInfo.org}}</div>
-              <div style="font-size:14px">{{baseInfo.start}}/{{baseInfo.end}}</div>
-              <div style="font-size:14px">相关技术：{{baseInfo.tec}}</div>
-              <div style="font-size:14px">项目描述：{{baseInfo.disp}}</div>
+              <div style="font-size:14px">项目职位：{{psnBaseInfo.name}}</div>
+              <div style="font-size:14px">{{psnBaseInfo.org}}</div>
+              <div style="font-size:14px">{{psnBaseInfo.start}}/{{psnBaseInfo.end}}</div>
+              <div style="font-size:14px">相关技术：{{psnBaseInfo.tec}}</div>
+              <div style="font-size:14px">项目描述：{{psnBaseInfo.disp}}</div>
             </div>
           </el-card>
         </el-col>
@@ -106,10 +67,10 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div style="font-size:14px">职位：{{baseInfo.jobname}}</div>
-              <div style="font-size:14px">{{baseInfo.company}}</div>
-              <div style="font-size:14px">{{baseInfo.start}}/{{baseInfo.end}}</div>
-              <div style="font-size:14px">工作描述：{{baseInfo.job}}</div>
+              <div style="font-size:14px">职位：{{psnBaseInfo.jobname}}</div>
+              <div style="font-size:14px">{{psnBaseInfo.company}}</div>
+              <div style="font-size:14px">{{psnBaseInfo.start}}/{{psnBaseInfo.end}}</div>
+              <div style="font-size:14px">工作描述：{{psnBaseInfo.job}}</div>
             </div>
           </el-card>
         </el-col>
@@ -122,10 +83,10 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <div style="font-size:14px">专业：{{baseInfo.jobname}}</div>
-              <div style="font-size:14px">学校：{{baseInfo.company}}</div>
-              <div style="font-size:14px">毕业时间：{{baseInfo.grad}}</div>
-              <div style="font-size:14px">学历：{{baseInfo.job}}</div>
+              <div style="font-size:14px">专业：{{psnBaseInfo.jobname}}</div>
+              <div style="font-size:14px">学校：{{psnBaseInfo.company}}</div>
+              <div style="font-size:14px">毕业时间：{{psnBaseInfo.grad}}</div>
+              <div style="font-size:14px">学历：{{psnBaseInfo.job}}</div>
             </div>
           </el-card>
         </el-col>
@@ -138,146 +99,87 @@
               <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-edit"></el-button>
             </div>
             <div>
-              <article style="font-size:14px">{{baseInfo.jobname}}</article>
+              <article style="font-size:14px">{{psnBaseInfo.jobname}}</article>
             </div>
           </el-card>
         </el-col>
       </el-row>
     </div>
-    <footer class="footerItem">
-      <hr>
-      <el-row>
-        <el-col :span="6" :offset="4">
-          <div class="leftItem">
-            <h3>LINKS</h3>
-            <!-- <font-awesome-icon icon="fab fa-github"/> -->
-            <i class="fab fa-github"></i>
-            <a>GitHub</a>
-            <br>
-            <i class="fab fa-weibo"></i>
-            <a>Weibo</a>
-          </div>
-        </el-col>
-        <el-col :span="6" :offset="4">
-          <div class="rightItem">
-            <h3>联系我</h3>
-            <p>
-              Tel:
-              +86 1375 555 5555
-            </p>
-            <p>
-              Email:
-              qiulangcheng@gmail.com
-            </p>
-            <p>
-              Loc:
-              Earth
-            </p>
-          </div>
-        </el-col>
-      </el-row>
-    </footer>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import Cookies from "vue-cookies";
 export default {
   name: "singleBlogItem",
   data() {
     return {
-      baseInfo: {},
-      id: this.$route.params.id,
-      blog: {
-        title: "",
-        body: ""
-      }
+      psnBaseInfo: {},
+      resume: {},
+      showNowStatus: "",
+      nowStatusList: [
+        {
+          key: "0",
+          value: "请选择求职状态"
+        },
+        {
+          key: "1",
+          value: "我是学生"
+        },
+        {
+          key: "2",
+          value: "我目前在职，观望机会"
+        },
+        {
+          key: "3",
+          value: "我已经离职，正在找工作"
+        },
+        {
+          key: "4",
+          value: "我暂时不想找新工作"
+        }
+      ]
     };
   },
   methods: {
     handleCommand(command) {
-      if (command == "b") {
-        this.$store.commit("userStatus", false);
-        this.$store.commit("usernameStatus", "");
-        //刷新
-        //新建一个空页面
-        this.$router.push("/");
-      }
+      this.psnBaseInfo.nowStatus = command.key;
+      this.showNowStatus = command.value;
     }
   },
   computed: {
-    checkLogin() {
-      this.username = this.$store.getters.username;
-      return this.$store.getters.isLogin;
-    }
   },
   created() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
+    this.axios
+      .post("getPsnResumeInfo", {
+        psnid: Cookies.get("psnid")
+      })
       .then(data => {
-        this.blog = data.data;
+        if (data.data.status == "ok") {
+          this.psnBaseInfo = JSON.parse(data.data.msg)[0].fields;
+        }
       });
   }
 };
 </script>
 <style scoped>
-header {
-  background: #f8f8f9;
+.el-dropdown-link {
+  cursor: pointer;
+  color: #67c23a;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.el-dropdown-menu__item:focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #ecf5ff;
+  color: #67c23a;
 }
 .el-row {
   margin-bottom: 20px;
   &:last-child {
     margin-bottom: 0;
   }
-}
-.top {
-  background: #67c23a;
-  height: 36px;
-  width: 100%;
-  padding-top: 12px;
-}
-.top-left {
-  text-align: left;
-}
-.top-right {
-  text-align: right;
-}
-.top-left a {
-  padding: 0px 10px;
-  font-size: 12px;
-  text-decoration: none;
-  color: #f8f8f9;
-}
-.top-right a {
-  padding: 0px 10px;
-  font-size: 12px;
-  text-decoration: none;
-  color: #f8f8f9;
-}
-
-.top-right span {
-  padding: 0px 10px;
-  font-size: 14px;
-  text-decoration: none;
-  color: #f8f8f9;
-}
-
-.container {
-  background: #f8f8f9;
-  padding: 30px;
-}
-.container ul {
-  list-style-type: none;
-  padding: 0;
-}
-.container ul li {
-  display: inline-block;
-  margin: 0 30px;
-}
-.container ul li a {
-  text-decoration: none;
-  color: #303133;
-  font-size: 18px;
 }
 .content {
   padding: 60px;
@@ -299,16 +201,5 @@ header {
 }
 article {
   padding: 10px;
-}
-footer {
-  height: 200px;
-  width: 100vm;
-  background: #f8f8f9;
-}
-.leftItem {
-  color: #303133;
-}
-.rightItem {
-  color: #303133;
 }
 </style>

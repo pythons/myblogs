@@ -1,58 +1,9 @@
 <template>
-  <div class="singleBlogItem">
-    <header>
-      <div class="top">
-        <el-row :gutter="20">
-          <el-col :span="6" :offset="4">
-            <div class="top-left">
-              <a href>思否社区</a>
-              <a href>码云</a>
-              <a href>帮助</a>
-            </div>
-          </el-col>
-          <el-col :span="6" :offset="4">
-            <div v-if="!checkLogin" class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>
-            <div v-else-if="checkLogin" class="top-right">
-              <el-dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  {{username}}
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="a">个人主页</el-dropdown-item>
-                  <el-dropdown-item divided command="b">注销</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="container">
-        <el-row :gutter="20">
-          <el-col :span="10" :offset="7">
-            <ul>
-              <li>
-                <router-link to>预览</router-link>
-              </li>
-              <li>
-                <router-link to>预览</router-link>
-              </li>
-              <li>
-                <router-link to>预览</router-link>
-              </li>
-              <li>
-                <router-link to>预览</router-link>
-              </li>
-            </ul>
-          </el-col>
-        </el-row>
-      </div>
-    </header>
-    <div class="content">
-      <el-row :gutter="20">
+  <div class="userPage">
+    <childPageHeader></childPageHeader>
+    <router-view></router-view>
+    <!-- <div class="content"> -->
+    <!-- <el-row :gutter="20">
         <el-col :span="8" :offset="4">
           <div class="content-left">
             <span>{{blog.title}}</span>
@@ -69,91 +20,43 @@
           <div class="content-right">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <!-- <span>标题</span> -->
-                <span>作者</span>
+                <span>公司名称</span>
               </div>
               <div>
-                <!-- <p>正文</p> -->
                 <article>简介</article>
               </div>
             </el-card>
           </div>
         </el-col>
-      </el-row>
-    </div>
-    <footer class="footerItem">
-      <hr>
-      <el-row>
-        <el-col :span="6" :offset="4">
-          <div class="leftItem">
-            <h3>LINKS</h3>
-            <!-- <font-awesome-icon icon="fab fa-github"/> -->
-            <i class="fab fa-github"></i>
-            <a>GitHub</a>
-            <br>
-            <i class="fab fa-weibo"></i>
-            <a>Weibo</a>
-          </div>
-        </el-col>
-        <el-col :span="6" :offset="4">
-          <div class="rightItem">
-            <h3>联系我</h3>
-            <p>
-              Tel:
-              +86 1375 555 5555
-            </p>
-            <p>
-              Email:
-              qiulangcheng@gmail.com
-            </p>
-            <p>
-              Loc:
-              Earth
-            </p>
-          </div>
-        </el-col>
-      </el-row>
-    </footer>
+    </el-row>-->
+    <!-- </div> -->
+    <childPageFooter></childPageFooter>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
+import childPageHeader from "./childPageHeader";
+import childPageFooter from "./childPageFooter";
+import Cookies from "vue-cookies";
 export default {
-  name: "singleBlogItem",
+  name: "userPage",
+  components: {
+    childPageHeader,
+    childPageFooter
+  },
   data() {
     return {
-      id: this.$route.params.id,
+      id: "",
       blog: {
         title: "",
         body: ""
       }
     };
   },
-  methods: {
-    handleCommand(command) {
-      if (command == "b") {
-        this.$store.commit("userStatus", false);
-        this.$store.commit("usernameStatus", "");
-        //刷新
-        //新建一个空页面
-        this.$router.push("/");
-      }
-    }
-  },
-  computed: {
-    checkLogin() {
-      this.username = this.$store.getters.username;
-      return this.$store.getters.isLogin;
-    }
-  },
-  created() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
-      .then(data => {
-        this.blog = data.data;
-      });
-  }
+  created() {},
+  methods: {},
+  computed: {}
 };
 </script>
 <style scoped>

@@ -29,6 +29,11 @@ export default new Router({
       path: '/userpage',
       name: 'userpage',
       component: () => import('./components/UserPage.vue'),
+      children: [{
+        path: '/resume',
+        name: 'resume',
+        component: () => import('./components/Resume.vue'),
+      }, ]
     },
     {
       path: '/check',
@@ -40,11 +45,11 @@ export default new Router({
       name: 'addjob',
       component: () => import('./components/AddJob.vue'),
     },
-    {
-      path: '/resume',
-      name: 'resume',
-      component: () => import('./components/Resume.vue'),
-    },
+    // {
+    //   path: '/resume',
+    //   name: 'resume',
+    //   component: () => import('./components/Resume.vue'),
+    // },
   ],
   mode: "history",
 })

@@ -53,7 +53,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import Cookies from "vue-cookies";
 export default {
   name: "loginItem",
@@ -89,8 +88,8 @@ export default {
     psnLogin(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios
-            .post("http://127.0.0.1:8000/apis/psnLogin", {
+          this.axios
+            .post("psnLogin", {
               username: this.userForm.username,
               password: this.userForm.password
             })
@@ -123,8 +122,8 @@ export default {
     entLogin(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios
-            .post("http://127.0.0.1:8000/apis/entLogin", {
+          this.axios
+            .post("entLogin", {
               username: this.userForm.username,
               password: this.userForm.password
             })
@@ -169,7 +168,7 @@ export default {
   min-height: 600px;
   /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
     fixed; */
-  background: url("../assets/bg.jpg") center no-repeat
+  background: url("../assets/body-bg.png") center no-repeat
     fixed;
   background-size: cover;
 }

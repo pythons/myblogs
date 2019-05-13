@@ -40,8 +40,8 @@
               suffix-icon="el-icon-search"
               v-model="searchInput"
             ></el-input>
-            <p style="font-size:12px;color:#f8f8f9">TAGS:</p>
-            <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">{{tag.name}}</el-tag>
+            <!-- <p style="font-size:12px;color:#f8f8f9">TAGS:</p>
+            <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">{{tag.name}}</el-tag> -->
           </div>
         </el-col>
       </el-row>
@@ -179,14 +179,20 @@ export default {
         this.$router.push("/userpage");
       }
       if (command == "b") {
-        // this.$store.commit("userStatus", false);
-        // this.$store.commit("usernameStatus", "");
-        Cookies.remove("username");
-        //刷新
-        //新建一个空页面
-        let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
-        this.$router.push(NewPage);
-        this.$router.go(-1);
+        this.axios.post("loginOut", {}).then(data => {
+          if (data.data.status == "ok") {
+            Cookies.remove("username");
+            Cookies.remove("sessionid");
+            if (Cookies.get("entid")) {
+              Cookies.remove("entid");
+            } else if (Cookies.get("psnid")) {
+              Cookies.remove("psnid");
+            }
+            let NewPage = "_empty" + "?time=" + new Date().getTime() / 1000;
+            this.$router.push(NewPage);
+            this.$router.go(-1);
+          }
+        });
       }
     }
   }
@@ -222,9 +228,8 @@ header {
 .searchItem {
   /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
     fixed; */
-    
-  background: url("../assets/bg.jpg") center no-repeat
-    fixed;
+
+  background: url("../assets/body-bg.png") center no-repeat fixed;
   background-size: cover;
 }
 .search {

@@ -1,7 +1,7 @@
 <template>
   <div class="signUpItem">
     <el-row :gutter="20">
-      <el-col :span="8" :offset="8">
+      <el-col :span="10" :offset="7">
         <div class="item">
           <el-tabs v-model="activeName">
             <el-tab-pane label="个人注册" name="1"></el-tab-pane>
@@ -319,9 +319,9 @@ export default {
     psnSubmit(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.defaults.withCredentials = true;
-          axios
-            .post("http://127.0.0.1:8000/apis/psnSubmitUser", {
+          // axios.defaults.withCredentials = true;
+          this.axios
+            .post("psnSubmitUser", {
               username: this.psnAccountInfo.username,
               password: this.psnAccountInfo.password,
               question: this.psnAccountInfo.question,
@@ -354,20 +354,14 @@ export default {
         if (valid) {
           // axios.defaults.withCredentials = true;
           this.axios
-            .post(
-              "entSubmitUser",
-              {
-                username: this.entAccountInfo.username,
-                password: this.entAccountInfo.password,
-                question: this.entAccountInfo.question,
-                answer: this.entAccountInfo.answer,
-                email: this.entAccountInfo.email,
-                tel: this.entAccountInfo.tel
-              },
-              {
-                withCredentials: true
-              }
-            )
+            .post("entSubmitUser", {
+              username: this.entAccountInfo.username,
+              password: this.entAccountInfo.password,
+              question: this.entAccountInfo.question,
+              answer: this.entAccountInfo.answer,
+              email: this.entAccountInfo.email,
+              tel: this.entAccountInfo.tel
+            })
             .then(data => {
               if (data.data.status == "ok") {
                 if (Cookies.get("psnid")) {
@@ -433,7 +427,7 @@ export default {
   /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
     fixed; */
 
-  background: url("../assets/bg.jpg") center no-repeat fixed;
+  background: url("../assets/body-bg.png") center no-repeat fixed;
   background-size: cover;
 }
 .item {
