@@ -1,7 +1,6 @@
 <template>
   <div id="homepage">
     <header-item/>
-    <!-- <openWeek/> -->
     <jobList/>
     <footer-item/>
   </div>
@@ -11,14 +10,12 @@
 import headerItem from "../components/HeaderItem";
 import jobList from "../components/JobList";
 import footerItem from "../components/FooterItem";
-import openWeek from "../components/OpenWeek";
 export default {
   name: "homepage",
   components: {
     headerItem,
     jobList,
     footerItem,
-    openWeek
   }
 };
 </script>

@@ -38,7 +38,6 @@
 // import axios from "axios";
 import childPageHeader from "./childPageHeader";
 import childPageFooter from "./childPageFooter";
-import Cookies from "vue-cookies";
 export default {
   name: "userPage",
   components: {

@@ -142,10 +142,6 @@ export default {
     }
   },
   computed: {
-    checkLogin() {
-      this.username = this.$store.getters.username;
-      return this.$store.getters.isLogin;
-    }
   },
   created() {
     axios
