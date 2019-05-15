@@ -44,9 +44,10 @@
               <div
                 class="base-info-item"
               >基本信息：{{psnBaseInfo.age}} / {{psnBaseInfo.sex}} / {{psnBaseInfo.location}}</div>
-              <div
-                class="base-info-item"
-              >求职意向：{{psnBaseInfo.jobName}} / {{psnBaseInfo.jobPay}} / {{psnBaseInfo.jobType}} / {{psnBaseInfo.jobAdd}}</div>
+              <div class="base-info-item">
+                求职意向：{{psnBaseInfo.jobName}} / {{psnBaseInfo.jobPay}} /
+                {{psnBaseInfo.jobType}} / {{psnBaseInfo.jobAdd}}
+              </div>
               <div class="base-info-item">手机：{{psnBaseInfo.tel}}</div>
               <div class="base-info-item">邮箱：{{psnBaseInfo.email}}</div>
             </div>
@@ -117,30 +118,46 @@
                 icon="el-icon-plus"
                 @click="editProject='add'"
               ></el-button>
-              <el-button
-                v-else
-                style="float: right; padding: 3px 0 ;color:#67c23a"
-                type="text"
-                icon="el-icon-plus"
-                @click="editProject='show'"
-              ></el-button>
             </div>
             <div v-if="editProject=='show'">
-              <div v-for="item in psnProjectInfo" :key="item.pk">
-                <div style="font-size:14px">项目职位：{{item.fields.jobName}}</div>
-                <div style="font-size:14px">所属组织：{{item.fields.orgName}}</div>
-                <div style="font-size:14px">项目时间：{{item.fields.startTime}}/{{item.fields.endTime}}</div>
-                <div style="font-size:14px">相关技术：{{item.fields.tecName}}</div>
-                <div style="font-size:14px">项目描述：{{item.fields.projectDisp}}</div>
+              <div v-for="item in psnProjectInfo" :key="item.pk" class="for-info">
+                <div class="for-item">
+                  <p>{{item.fields.startTime}}/{{item.fields.endTime}}</p>
+                  <div class="for-info-item" style="color:#67c23a">{{item.fields.orgName}}</div>
+                </div>
+                <div class="for-item">
+                  <p>{{item.fields.projectName}}/{{item.fields.jobName}}</p>
+                  <div class="for-info-item">相关技术：{{item.fields.tecName}}</div>
+                  <div class="for-info-item">项目描述：{{item.fields.projectDisp}}</div>
+                </div>
+                <div class="for-item">
+                  <div style="margin:20px">
+                    <el-button
+                      style="float: right; padding: 3px  ;color:#67c23a"
+                      type="text"
+                      icon="el-icon-edit"
+                      @click="funProjectEdit(item.pk)"
+                    ></el-button>
+                    <el-button
+                      style="float: right; padding: 3px  ;color:#67c23a"
+                      type="text"
+                      icon="el-icon-delete"
+                      @click="funProjectDel(item.pk)"
+                    ></el-button>
+                  </div>
+                </div>
               </div>
             </div>
             <div v-else>
               <el-form :model="projectItem" label-width="80px">
+                <el-form-item label="项目名称">
+                  <el-input v-model="projectItem.filelds.projectName"></el-input>
+                </el-form-item>
                 <el-form-item label="项目职位">
-                  <el-input v-model="projectItem.jobName"></el-input>
+                  <el-input v-model="projectItem.filelds.jobName"></el-input>
                 </el-form-item>
                 <el-form-item label="所属组织">
-                  <el-input v-model="projectItem.orgName"></el-input>
+                  <el-input v-model="projectItem.filelds.orgName"></el-input>
                 </el-form-item>
                 <el-form-item label="项目时间">
                   <el-date-picker
@@ -155,13 +172,13 @@
                   ></el-date-picker>
                 </el-form-item>
                 <el-form-item label="相关技术">
-                  <el-input v-model="projectItem.tecName"></el-input>
+                  <el-input v-model="projectItem.filelds.tecName"></el-input>
                 </el-form-item>
                 <el-form-item label="项目描述">
-                  <el-input type="textarea" v-model="projectItem.projectDisp"></el-input>
+                  <el-input type="textarea" v-model="projectItem.filelds.projectDisp"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="success" plain @click="funSubProjectInfo(projectItem.id)">确认</el-button>
+                  <el-button type="success" plain @click="funSubProjectInfo(projectItem.pk)">确认</el-button>
                   <el-button type="info" plain @click="editProject='show'">取消</el-button>
                 </el-form-item>
               </el-form>
@@ -230,7 +247,7 @@ export default {
       editEdu: "show",
       psnBaseInfo: {},
       psnProjectInfo: [],
-      projectItem: {},
+      projectItem: { pk: "", filelds: {} },
       projectTime: [],
       psnWorkInfo: {},
       psnEduInfo: {},
@@ -292,39 +309,14 @@ export default {
   },
   computed: {},
   created() {
-    Date.prototype.Format = function(fmt) {
-      var o = {
-        "M+": this.getMonth() + 1, //月份
-        "d+": this.getDate(), //日
-        "h+": this.getHours(), //小时
-        "m+": this.getMinutes(), //分
-        "s+": this.getSeconds(), //秒
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-        S: this.getMilliseconds() //毫秒
-      };
-      if (/(y+)/.test(fmt))
-        fmt = fmt.replace(
-          RegExp.$1,
-          (this.getFullYear() + "").substr(4 - RegExp.$1.length)
-        );
-      for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt))
-          fmt = fmt.replace(
-            RegExp.$1,
-            RegExp.$1.length == 1
-              ? o[k]
-              : ("00" + o[k]).substr(("" + o[k]).length)
-          );
-      return fmt;
-    };
-
     this.axios
       .post("getPsnResumeInfo", {
         psnid: Cookies.get("psnid")
       })
       .then(data => {
         if (data.data.status == "ok") {
-          this.psnBaseInfo = JSON.parse(data.data.msg)[0].fields;
+          this.psnBaseInfo = JSON.parse(data.data.data.psnBaseInfo)[0].fields;
+          this.psnProjectInfo = JSON.parse(data.data.data.psnProjectInfo);
         }
       });
   },
@@ -378,12 +370,14 @@ export default {
         .post("subPsnProjectInfo", {
           psnid: Cookies.get("psnid"),
           key: e,
-          msg: this.projectItem
+          msg: this.projectItem.filelds
         })
         .then(data => {
           if (data.data.status == "ok") {
             this.editProject = "show";
-            this.psnProjectInfo = data.data.msg;
+            this.psnProjectInfo = JSON.parse(data.data.data);
+            this.projectItem = {};
+            this.projectTime = [];
             this.$message({
               type: "success",
               message: "保存成功"
@@ -399,42 +393,64 @@ export default {
   cursor: pointer;
   color: #67c23a;
 }
+
 .el-icon-arrow-down {
   font-size: 12px;
 }
+
 .el-dropdown-menu__item:focus,
 .el-dropdown-menu__item:not(.is-disabled):hover {
   background-color: #ecf5ff;
   color: #67c23a;
 }
+
 .el-row {
   margin-bottom: 20px;
+
   &:last-child {
     margin-bottom: 0;
   }
 }
+
 .content {
   padding: 60px;
   color: #303133;
 }
+
 .content-left {
   padding-bottom: 20px;
 }
+
 .content-left span {
   font-size: 18px;
   color: #606266;
 }
+
 .content-left p {
   font-size: 14px;
   color: #909399;
 }
+
 .content-right .box-card {
   background: #f8f8f9;
 }
+
 article {
   padding: 10px;
 }
+
 .base-info-item {
+  font-size: 14px;
+  margin: 10px 0;
+}
+.for-info {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+}
+.for-item {
+  margin: 10px 30px;
+}
+.for-info-item {
   font-size: 14px;
   margin: 10px 0;
 }
