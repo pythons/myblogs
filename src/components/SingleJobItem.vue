@@ -130,7 +130,7 @@
 
 <script>
 import axios from "axios";
-import { setCookie, getCookie, delCookie } from "../cookie.js";
+
 export default {
   name: "singleBlogItem",
   data() {
@@ -157,13 +157,7 @@ export default {
   },
   computed: {
     checkLogin() {
-      let uname = getCookie("username");
-      let a = false;
-      if (uname) {
-        this.username = uname;
-        a = true;
-      }
-      return a;
+      return true;
     }
   },
   created() {

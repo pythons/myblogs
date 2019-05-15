@@ -90,6 +90,11 @@ export default {
     } else if (Cookies.get("psnid")) {
       this.psnid = Cookies.get("psnid");
       this.entid = "";
+    } else {
+      this.$message({
+        type: "danger",
+        message: "身份认证已过期，请重新登陆"
+      });
     }
   },
   methods: {

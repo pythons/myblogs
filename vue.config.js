@@ -36,6 +36,16 @@ module.exports = {
         target: API,
         ws: true,
         changeOrigin: true
+      },
+      '/subPsnBaseInfo': {
+        target: API,
+        ws: true,
+        changeOrigin: true
+      },
+      '/subPsnProjectInfo': {
+        target: API,
+        ws: true,
+        changeOrigin: true
       }
     }
   }
