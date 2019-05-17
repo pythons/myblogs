@@ -21,6 +21,12 @@
               <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="userForm.password"></el-input>
               </el-form-item>
+              <el-form-item label="验证码" prop="idCode">
+                <el-input type="text" v-model="userForm.idCode"></el-input>
+                <div class="verify-box" @click="refreshCode">
+                  <identifyItem :identifyCode="identifyCode"></identifyItem>
+                </div>
+              </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="psnLogin('userForm')">提交</el-button>
                 <el-button @click="resetForm">重置</el-button>
@@ -41,6 +47,12 @@
               <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="userForm.password"></el-input>
               </el-form-item>
+              <el-form-item label="验证码" prop="idCode">
+                <el-input type="text" v-model="userForm.idCode"></el-input>
+                <div class="verify-box" @click="refreshCode">
+                  <identifyItem :identifyCode="identifyCode"></identifyItem>
+                </div>
+              </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="entLogin('userForm')">提交</el-button>
                 <el-button @click="resetForm">重置</el-button>
@@ -54,14 +66,30 @@
 </template>
 <script>
 import Cookies from "vue-cookies";
+import identifyItem from "./idfendify";
 export default {
+  components: {
+    identifyItem
+  },
   name: "loginItem",
+
   data() {
+    var idCode = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入验证码"));
+      } else if (value !== this.identifyCode) {
+        callback(new Error("验证码不符，请重新输入!"));
+      } else {
+        callback();
+      }
+    };
     return {
+      identifyCode: "",
       activeName: "1",
       userForm: {
         username: "",
-        password: ""
+        password: "",
+        idCode: ""
       },
       rules: {
         username: [
@@ -71,6 +99,9 @@ export default {
         password: [
           { required: true, message: "请输入密码", trigger: "blur" }, //非空验证
           { min: 6, max: 18, message: "长度在 6 到 18 个字符", trigger: "blur" } //长度验证
+        ],
+        idCode: [
+          { validator: idCode, trigger: "blur" } //非空验证
         ]
       }
     };
@@ -78,13 +109,35 @@ export default {
   created() {
     Cookies.remove("entid");
     Cookies.remove("psnid");
+    this.makeCode(4);
   },
   mounted() {
     if (Cookies.get("username")) {
       this.$router.push("/");
     }
   },
+  watch: {
+    activeName: function() {
+      this.identifyCode = "";
+      this.makeCode(4);
+    }
+  },
   methods: {
+    randomNum(min, max) {
+      let a = Math.floor(Math.random() * (max - min) + min);
+      return a;
+      // return Math.floor(Math.random() * Math.floor(max));
+    },
+    refreshCode() {
+      this.identifyCode = "";
+      this.makeCode(this.identifyCode, 4);
+    },
+    makeCode(l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.randomNum(0, 9);
+      }
+    },
+
     psnLogin(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -168,8 +221,7 @@ export default {
   min-height: 600px;
   /* background: url("../assets/tooopen_sy_191330099764.jpg") center no-repeat
     fixed; */
-  background: url("../assets/body-bg.png") center no-repeat
-    fixed;
+  background: url("../assets/body-bg.png") center no-repeat fixed;
   background-size: cover;
 }
 .item {

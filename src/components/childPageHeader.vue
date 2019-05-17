@@ -36,27 +36,27 @@
           <el-col :span="10" :offset="7">
             <ul v-if="entid">
               <li>
-                <router-link to>首页</router-link>
+                <router-link to='/userpage'>主页</router-link>
               </li>
               <li>
-                <router-link to>基本信息</router-link>
+                <router-link to>职位投递</router-link>
               </li>
               <li>
-                <router-link to>职位信息</router-link>
+                <router-link to>我的职位</router-link>
               </li>
               <li>
-                <router-link to>发布职位</router-link>
+                <router-link to='addjob'>发布职位</router-link>
               </li>
             </ul>
             <ul v-else>
               <li>
-                <router-link to>首页</router-link>
+                <router-link to>主页</router-link>
               </li>
               <li>
-                <router-link to>基本信息</router-link>
+                <router-link to>职位邀请</router-link>
               </li>
               <li>
-                <router-link to>投递信息</router-link>
+                <router-link to>我的投递</router-link>
               </li>
               <li>
                 <router-link to="resume">修改简历</router-link>

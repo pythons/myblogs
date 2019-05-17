@@ -388,7 +388,7 @@ export default {
         if (valid) {
           // axios.defaults.withCredentials = true;
           this.axios
-            .post("entBaseInfoSub", {
+            .post("subEntBaseInfo", {
               // entid: Cookies.get("entid"),
               entName: this.entBaseInfo.entName,
               entContectName: this.entBaseInfo.entContectName,

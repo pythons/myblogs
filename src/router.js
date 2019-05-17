@@ -33,6 +33,14 @@ export default new Router({
         path: '/resume',
         name: 'resume',
         component: () => import('./components/Resume.vue'),
+      }, {
+        path: '/addjob',
+        name: 'addjob',
+        component: () => import('./components/AddJob.vue'),
+      },{
+        path: '/',
+        name: 'entmain',
+        component: () => import('./components/entMain.vue'),
       }, ]
     },
     {
@@ -40,11 +48,11 @@ export default new Router({
       name: 'check',
       component: () => import('./components/checkEnterprise.vue'),
     },
-    {
-      path: '/addjob',
-      name: 'addjob',
-      component: () => import('./components/AddJob.vue'),
-    },
+    // {
+    //   path: '/addjob',
+    //   name: 'addjob',
+    //   component: () => import('./components/AddJob.vue'),
+    // },
     // {
     //   path: '/resume',
     //   name: 'resume',

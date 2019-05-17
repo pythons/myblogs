@@ -1,76 +1,72 @@
 <template>
-  <div class="singleBlogItem">
-    <header>
-      <div class="top">
-        <el-row :gutter="20">
-          <el-col :span="6" :offset="4">
-            <div class="top-left">
-              <a href="/">首页</a>
-              <a href>思否社区</a>
-              <a href>码云</a>
-              <a href>帮助</a>
-            </div>
-          </el-col>
-          <el-col :span="6" :offset="4">
-            <div v-if="!checkLogin" class="top-right">
-              <router-link to="/login">登录</router-link>
-              <router-link to="/signup">注册</router-link>
-            </div>
-            <div v-else-if="checkLogin" class="top-right">
-              <el-dropdown @command="handleCommand">
-                <span class="el-dropdown-link">
-                  {{username}}
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="a">个人主页</el-dropdown-item>
-                  <el-dropdown-item divided command="b">注销</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="container">
-        <el-row :gutter="20">
-          <el-col :span="10" :offset="7">
-            <ul>
-              <li>
-                <router-link to>全职</router-link>
-              </li>
-              <li>
-                <router-link to>实习</router-link>
-              </li>
-              <li>
-                <router-link to>我的简历</router-link>
-              </li>
-              <li>
-                <router-link to>发布职位</router-link>
-              </li>
-            </ul>
-          </el-col>
-        </el-row>
-      </div>
-    </header>
+  <div class="addJobItem">
     <div class="content">
       <el-row :gutter="20">
-        <el-col :span="8" :offset="4">
+        <el-col :span="10" :offset="4">
           <div class="content-left">
-            <el-form ref="form" :model="addjob" label-width="80px">
+            <el-form ref="form" :model="entJobInfo" label-width="120px">
               <el-form-item label="职位名称">
-                <el-input></el-input>
+                <el-input v-model="entJobInfo.jobName"></el-input>
               </el-form-item>
-              <el-form-item label="所属公司">
-                <el-input></el-input>
+              <el-form-item label="所属部门/子公司">
+                <el-input v-model="entJobInfo.jobDepart"></el-input>
               </el-form-item>
               <el-form-item label="职位类别">
-                <el-input></el-input>
+                <el-input v-model="entJobInfo.jobClass"></el-input>
+              </el-form-item>
+              <el-form-item label="职位性质">
+                <el-radio-group v-model="entJobInfo.jobType" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="全职"></el-radio-button>
+                  <el-radio-button label="兼职"></el-radio-button>
+                  <el-radio-button label="实习"></el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="职位薪资">
+                <el-radio-group v-model="entJobInfo.jobPay" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="5-8W"></el-radio-button>
+                  <el-radio-button label="8-12W"></el-radio-button>
+                  <el-radio-button label="14-18W"></el-radio-button>
+                  <el-radio-button label="18-20W"></el-radio-button>
+                  <el-radio-button label="20W以上"></el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="工作城市">
+                <el-input v-model="entJobInfo.jobLocation"></el-input>
+              </el-form-item>
+              <el-form-item label="具体地址">
+                <el-input v-model="entJobInfo.jobAddress"></el-input>
+              </el-form-item>
+              <el-form-item label="工作经验">
+                <el-radio-group v-model="entJobInfo.workExp" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="应届毕业生"></el-radio-button>
+                  <el-radio-button label="1-3年"></el-radio-button>
+                  <el-radio-button label="3-5年"></el-radio-button>
+                  <el-radio-button label="5-8年"></el-radio-button>
+                  <el-radio-button label="8年以上"></el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="学历要求">
+                <el-radio-group v-model="entJobInfo.degree" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="大专"></el-radio-button>
+                  <el-radio-button label="本科"></el-radio-button>
+                  <el-radio-button label="硕士"></el-radio-button>
+                  <el-radio-button label="博士"></el-radio-button>
+                  <el-radio-button label="其他"></el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="任职要求">
+                <el-input
+                  type="textarea"
+                  :autosize="{ minRows: 4, maxRows: 4}"
+                  placeholder="请输入岗位要求"
+                  v-model="entJobInfo.jobReq"
+                ></el-input>
               </el-form-item>
               <el-form-item label="投递邮箱">
-                <el-input></el-input>
+                <el-input v-model="entJobInfo.email"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="success">立即创建</el-button>
+                <el-button type="success" @click="funAddJob">立即发布</el-button>
                 <el-button>
                   <router-link to="/">取消</router-link>
                 </el-button>
@@ -80,75 +76,43 @@
         </el-col>
       </el-row>
     </div>
-    <footer class="footerItem">
-      <hr>
-      <el-row>
-        <el-col :span="6" :offset="4">
-          <div class="leftItem">
-            <h3>LINKS</h3>
-            <!-- <font-awesome-icon icon="fab fa-github"/> -->
-            <i class="fab fa-github"></i>
-            <a>GitHub</a>
-            <br>
-            <i class="fab fa-weibo"></i>
-            <a>Weibo</a>
-          </div>
-        </el-col>
-        <el-col :span="6" :offset="4">
-          <div class="rightItem">
-            <h3>联系我</h3>
-            <p>
-              Tel:
-              +86 1375 555 5555
-            </p>
-            <p>
-              Email:
-              qiulangcheng@gmail.com
-            </p>
-            <p>
-              Loc:
-              Earth
-            </p>
-          </div>
-        </el-col>
-      </el-row>
-    </footer>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import Cookies from "vue-cookies";
 export default {
-  name: "singleBlogItem",
+  name: "addJobItem",
   data() {
     return {
-      addjob: {},
-      id: this.$route.params.id,
-      blog: {
-        title: "",
-        body: ""
+      key: "0000",
+      entJobInfo: {
+        jobType: "全职",
+        jobPay: "5-8W",
+        workExp: "应届毕业生",
+        degree: "大专"
       }
     };
   },
+  computed: {},
+  created() {},
   methods: {
-    handleCommand(command) {
-      if (command == "b") {
-        this.$store.commit("userStatus", false);
-        this.$store.commit("usernameStatus", "");
-        //刷新
-        //新建一个空页面
-        this.$router.push("/");
-      }
+    funAddJob() {
+      this.axios
+        .post("subEntJobInfo", {
+          entid: Cookies.get("entid"),
+          key: this.key,
+          msg: this.entJobInfo
+        })
+        .then(data => {
+          if (data.data.status == "ok") {
+            this.$message({
+              type: "success",
+              message: data.data.msg
+            });
+          }
+        });
     }
-  },
-  computed: {
-  },
-  created() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
-      .then(data => {
-        this.blog = data.data;
-      });
   }
 };
 </script>
