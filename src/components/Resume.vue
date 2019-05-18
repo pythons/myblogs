@@ -362,7 +362,7 @@
             <div v-else>
               <el-input
                 type="textarea"
-                :autosize="{ minRows: 2, maxRows: 4}"
+                :autosize="{ minRows: 4, maxRows: 4}"
                 placeholder="请输入内容"
                 v-model="psnBaseInfo.selfDisp"
                 @blur="funSubBaseInfo"

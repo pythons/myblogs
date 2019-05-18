@@ -98,7 +98,25 @@ export default {
     };
   },
   computed: {},
-  created() {},
+  created() {
+    window.scroll(0, 0);
+    if (this.$route.query.jobid) {
+      this.key = this.$route.query.jobid;
+
+      this.axios
+        .post("getEntBaseInfo", {
+          entid: Cookies.get("entid"),
+          key: this.key
+        })
+        .then(data => {
+          if (data.data.status == "ok") {
+            let arr = JSON.parse(data.data.data)[0];
+            arr.fields.jobid = arr.pk;
+            this.entJobInfo = arr.fields;
+          }
+        });
+    }
+  },
   methods: {
     funAddJob() {
       this.axios
@@ -109,6 +127,7 @@ export default {
         })
         .then(data => {
           if (data.data.status == "ok") {
+            this.$router.push("/userpage");
             this.$message({
               type: "success",
               message: data.data.msg

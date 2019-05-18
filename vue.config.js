@@ -70,6 +70,11 @@ module.exports = {
         ws: true,
         changeOrigin: true
       },
+      '/getEntBaseInfo': {
+        target: APIEnt,
+        ws: true,
+        changeOrigin: true
+      },
       '/subEntBaseInfo': {
         target: APIEnt,
         ws: true,
@@ -81,6 +86,11 @@ module.exports = {
         changeOrigin: true
       },
       '/delEntJobInfo': {
+        target: APIEnt,
+        ws: true,
+        changeOrigin: true
+      },
+      '/updateEntBaseInfo': {
         target: APIEnt,
         ws: true,
         changeOrigin: true
