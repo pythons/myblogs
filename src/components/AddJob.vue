@@ -23,6 +23,7 @@
               </el-form-item>
               <el-form-item label="职位薪资">
                 <el-radio-group v-model="entJobInfo.jobPay" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="面议"></el-radio-button>
                   <el-radio-button label="5-8W"></el-radio-button>
                   <el-radio-button label="8-12W"></el-radio-button>
                   <el-radio-button label="14-18W"></el-radio-button>
@@ -38,7 +39,8 @@
               </el-form-item>
               <el-form-item label="工作经验">
                 <el-radio-group v-model="entJobInfo.workExp" text-color="#fff" fill="#67c23a">
-                  <el-radio-button label="应届毕业生"></el-radio-button>
+                  <el-radio-button label="不限"></el-radio-button>
+                  <el-radio-button label="应届"></el-radio-button>
                   <el-radio-button label="1-3年"></el-radio-button>
                   <el-radio-button label="3-5年"></el-radio-button>
                   <el-radio-button label="5-8年"></el-radio-button>
@@ -47,6 +49,7 @@
               </el-form-item>
               <el-form-item label="学历要求">
                 <el-radio-group v-model="entJobInfo.degree" text-color="#fff" fill="#67c23a">
+                  <el-radio-button label="不限"></el-radio-button>
                   <el-radio-button label="大专"></el-radio-button>
                   <el-radio-button label="本科"></el-radio-button>
                   <el-radio-button label="硕士"></el-radio-button>
@@ -88,9 +91,9 @@ export default {
       key: "0000",
       entJobInfo: {
         jobType: "全职",
-        jobPay: "5-8W",
-        workExp: "应届毕业生",
-        degree: "大专"
+        jobPay: "面议",
+        workExp: "不限",
+        degree: "不限"
       }
     };
   },
