@@ -38,9 +38,13 @@ export default new Router({
         name: 'addjob',
         component: () => import('./components/AddJob.vue'),
       },{
-        path: '/',
+        path: '/entmain',
         name: 'entmain',
         component: () => import('./components/entMain.vue'),
+      },{
+        path: '/entjob',
+        name: 'entjob',
+        component: () => import('./components/entJob.vue'),
       }, ]
     },
     {

@@ -31,9 +31,6 @@
                   <el-radio-button label="20W以上"></el-radio-button>
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="工作城市">
-                <el-input v-model="entJobInfo.jobLocation"></el-input>
-              </el-form-item>
               <el-form-item label="具体地址">
                 <el-input v-model="entJobInfo.jobAddress"></el-input>
               </el-form-item>

@@ -43,7 +43,7 @@
               </div>
               <div
                 class="base-info-item"
-              >基本信息：{{psnBaseInfo.age}} / {{psnBaseInfo.sex}} / {{psnBaseInfo.location}}/{{panBaseInfo.workExp}}</div>
+              >基本信息：{{psnBaseInfo.age}} / {{psnBaseInfo.sex}} / {{psnBaseInfo.location}}/{{psnBaseInfo.workExp}}</div>
               <div class="base-info-item">
                 求职意向：{{psnBaseInfo.jobName}} / {{psnBaseInfo.jobPay}} /
                 {{psnBaseInfo.jobType}} / {{psnBaseInfo.jobAdd}}

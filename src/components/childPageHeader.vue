@@ -36,21 +36,21 @@
           <el-col :span="10" :offset="7">
             <ul v-if="entid">
               <li>
-                <router-link to='/userpage'>主页</router-link>
+                <router-link to="/entmain">主页</router-link>
+              </li>
+              <li>
+                <router-link to='/entjob'>职位管理</router-link>
               </li>
               <li>
                 <router-link to>职位投递</router-link>
               </li>
               <li>
-                <router-link to>我的职位</router-link>
-              </li>
-              <li>
-                <router-link to='addjob'>发布职位</router-link>
+                <router-link to="addjob">发布职位</router-link>
               </li>
             </ul>
             <ul v-else>
               <li>
-                <router-link to>主页</router-link>
+                <router-link to="/psnmain">主页</router-link>
               </li>
               <li>
                 <router-link to>职位邀请</router-link>
@@ -87,9 +87,11 @@ export default {
     if (Cookies.get("entid")) {
       this.entid = Cookies.get("entid");
       this.psnid = "";
+      this.$router.push("/entmain");
     } else if (Cookies.get("psnid")) {
       this.psnid = Cookies.get("psnid");
       this.entid = "";
+      this.$router.push("/psnmain");
     } else {
       this.$message({
         type: "danger",
